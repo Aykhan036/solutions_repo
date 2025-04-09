@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 2 - Physics and Mathematics</title>
+<title>Investigating the Dynamics of a Forced Damped Pendulum - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 2";
+        var mkdocs_page_name = "Investigating the Dynamics of a Forced Damped Pendulum";
         var mkdocs_page_input_path = "1 Physics/1 Mechanics/Problem_2.md";
         var mkdocs_page_url = null;
       </script>
@@ -48,8 +48,36 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Projectile Motion: Range as a Function of the Angle of Projection</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Investigating the Dynamics of a Forced Damped Pendulum</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#1-theoretical-foundation">1. Theoretical Foundation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#governing-equation">Governing Equation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#small-angle-approximation">Small-Angle Approximation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#resonance-condition">Resonance Condition</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-analysis-of-dynamics">2. Analysis of Dynamics</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#parameters-to-vary">Parameters to Vary:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#observable-behaviors">Observable Behaviors:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-practical-applications">3. Practical Applications</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-implementation-python-core-tasks">4. Implementation (Python) – Core Tasks</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#numerical-simulation">Numerical Simulation:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#visualizations">Visualizations:</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -163,7 +191,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">1 Mechanics</li>
-<li class="breadcrumb-item active">Problem 2</li>
+<li class="breadcrumb-item active">Investigating the Dynamics of a Forced Damped Pendulum</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,7 +199,74 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-2">Problem 2</h1>
+<h1 id="investigating-the-dynamics-of-a-forced-damped-pendulum">Investigating the Dynamics of a Forced Damped Pendulum</h1>
+<h2 id="1-theoretical-foundation">1. Theoretical Foundation</h2>
+<h3 id="governing-equation">Governing Equation</h3>
+<p>The motion of a forced damped pendulum is governed by the second-order nonlinear differential equation:</p>
+<div class="arithmatex">\[
+\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L} \sin\theta = A \cos(\omega t)
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(\theta(t)\)</span>: angular displacement<br/>
+- <span class="arithmatex">\(b\)</span>: damping coefficient<br/>
+- <span class="arithmatex">\(g\)</span>: gravitational acceleration<br/>
+- <span class="arithmatex">\(L\)</span>: pendulum length<br/>
+- <span class="arithmatex">\(A\)</span>: driving amplitude<br/>
+- <span class="arithmatex">\(\omega\)</span>: driving frequency</p>
+<h3 id="small-angle-approximation">Small-Angle Approximation</h3>
+<p>For small values of <span class="arithmatex">\(\theta\)</span>, we use the approximation <span class="arithmatex">\(\sin\theta \approx \theta\)</span>, so the equation becomes:</p>
+<div class="arithmatex">\[
+\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L} \theta = A \cos(\omega t)
+\]</div>
+<p>This is a linear, second-order non-homogeneous differential equation and can be solved analytically using the method of undetermined coefficients or variation of parameters.</p>
+<h3 id="resonance-condition">Resonance Condition</h3>
+<p>Resonance occurs when the driving frequency matches the system's natural frequency:</p>
+<div class="arithmatex">\[
+\omega \approx \sqrt{\frac{g}{L}}
+\]</div>
+<p>At resonance:
+- The amplitude of oscillation is maximized.
+- The energy input from the driving force balances the damping losses.</p>
+<hr/>
+<h2 id="2-analysis-of-dynamics">2. Analysis of Dynamics</h2>
+<h3 id="parameters-to-vary">Parameters to Vary:</h3>
+<ul>
+<li>Damping <span class="arithmatex">\(b\)</span>: critical, underdamped, overdamped</li>
+<li>Driving amplitude <span class="arithmatex">\(A\)</span></li>
+<li>Driving frequency <span class="arithmatex">\(\omega\)</span></li>
+</ul>
+<h3 id="observable-behaviors">Observable Behaviors:</h3>
+<ul>
+<li><strong>Periodic motion</strong>: Regular repeating oscillations.</li>
+<li><strong>Quasiperiodic motion</strong>: Superposition of incommensurate frequencies.</li>
+<li><strong>Chaotic motion</strong>: Sensitive dependence on initial conditions.</li>
+</ul>
+<p>To observe transitions between these regimes, we analyze:
+- <strong>Phase portraits</strong>
+- <strong>Poincaré sections</strong>
+- <strong>Bifurcation diagrams</strong></p>
+<hr/>
+<h2 id="3-practical-applications">3. Practical Applications</h2>
+<ul>
+<li><strong>Energy harvesting</strong>: Piezoelectric pendulum systems</li>
+<li><strong>Suspension bridges</strong>: Driven by wind (e.g., Tacoma Narrows Bridge collapse)</li>
+<li><strong>Electronic analogs</strong>: Driven RLC circuits</li>
+<li><strong>Biomechanics</strong>: Human walking modeled as a forced oscillator</li>
+</ul>
+<hr/>
+<h2 id="4-implementation-python-core-tasks">4. Implementation (Python) – Core Tasks</h2>
+<h3 id="numerical-simulation">Numerical Simulation:</h3>
+<p>Use <code>scipy.integrate.solve_ivp</code> to simulate the full nonlinear equation:</p>
+<div class="arithmatex">\[
+\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L} \sin\theta = A \cos(\omega t)
+\]</div>
+<h3 id="visualizations">Visualizations:</h3>
+<ul>
+<li>Time evolution of <span class="arithmatex">\(\theta(t)\)</span></li>
+<li>Phase space: <span class="arithmatex">\((\theta, \dot{\theta})\)</span></li>
+<li>Poincaré section (sample every period <span class="arithmatex">\(T = \frac{2\pi}{\omega}\)</span>)</li>
+<li>Bifurcation diagram by sweeping a parameter (e.g., <span class="arithmatex">\(A\)</span>)</li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
