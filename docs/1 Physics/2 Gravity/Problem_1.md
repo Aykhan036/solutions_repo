@@ -1,38 +1,103 @@
-# Kepler's Third Law - Orbital Period vs Orbital Radius (Circular Orbits)
+# Kepler’s Third Law: Orbital Period and Radius
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
+## 1. Deriving the Relationship (Kepler’s Third Law)
 
-# Gravitational constant (m^3 kg^-1 s^-2)
-G = 6.67430e-11
-# Mass of the Earth (kg)
-M_earth = 5.972e24
+Let’s consider a body (like a satellite or a moon) moving in a circular orbit around a planet.
 
-# Function to calculate orbital period for circular orbit
-def orbital_period(radius, M=M_earth):
-    return 2 * np.pi * np.sqrt(radius**3 / (G * M))
+The gravitational force provides the centripetal force:
 
-# Generate orbital radii from 7e6 m to 4e8 m
-radii = np.linspace(7e6, 4e8, 500)
-periods = orbital_period(radii)
+$$
+F_\text{gravity} = F_\text{centripetal}
+$$
 
-# Plotting T^2 vs R^3
-T_squared = periods**2
-R_cubed = radii**3
+$$
+\frac{G M m}{r^2} = \frac{m v^2}{r}
+$$
 
-plt.figure(figsize=(10, 6))
-plt.plot(R_cubed, T_squared, label="$T^2$ vs $R^3$")
-plt.xlabel("$R^3$ (m^3)")
-plt.ylabel("$T^2$ (s^2)")
-plt.title("Verification of Kepler's Third Law (Circular Orbits)")
-plt.grid(True)
-plt.legend()
-plt.show()
+Where:
 
-# Example: Moon's orbit around Earth
-R_moon = 3.844e8  # in meters
-T_moon = orbital_period(R_moon)
-print(f"Orbital period of the Moon around Earth: {T_moon / (60 * 60 * 24):.2f} days")
+- $G$ is the gravitational constant  
+- $M$ is the mass of the central body (e.g. Earth)  
+- $m$ is the mass of the orbiting object  
+- $r$ is the orbital radius  
+- $v$ is the orbital velocity  
 
-https://colab.research.google.com/drive/1w2VFAx_vHqH_MjsYttkpVH8_P_HGvs81?usp=sharing
+Simplifying:
+
+$$
+\frac{G M}{r} = v^2
+$$
+
+Now use the relation between velocity and orbital period $T$:
+
+$$
+v = \frac{2 \pi r}{T} \Rightarrow v^2 = \frac{4 \pi^2 r^2}{T^2}
+$$
+
+Substitute this into the gravity equation:
+
+$$
+\frac{G M}{r} = \frac{4 \pi^2 r^2}{T^2}
+$$
+
+Now solve for $T^2$:
+
+$$
+T^2 = \frac{4 \pi^2 r^3}{G M}
+$$
+
+✅ **Conclusion**:
+$$
+T^2 \propto r^3
+$$
+
+This is **Kepler's Third Law** for circular orbits.
+
+---
+
+## 2. Implications in Astronomy
+
+- **Planetary Mass Estimation**: By measuring $T$ and $r$, we can solve for $M$, the mass of the central planet or star.  
+- **Distance Calculation**: If we know the orbital period, we can estimate the orbital radius and vice versa.  
+- **Satellite Orbits**: Engineers use this law to design satellite orbits for GPS, communications, and weather observation.
+
+---
+
+## 3. Real-World Example – The Moon’s Orbit
+
+- Distance from Earth: $r \approx 3.84 \times 10^8 \, \text{m}$  
+- Earth's mass: $M = 5.972 \times 10^{24} \, \text{kg}$
+
+Using:
+
+$$
+T = 2 \pi \sqrt{\frac{r^3}{G M}} \Rightarrow T \approx 27.3 \, \text{days}
+$$
+
+Which matches the Moon’s actual orbital period.
+
+---
+
+## 4. Simulation and Visualization (Summary)
+
+A Python script was used to:
+
+- Simulate circular orbits  
+- Plot $T^2$ versus $r^3$, showing a straight line (confirms Kepler's Law)  
+- Compute real orbital periods  
+
+---
+
+## 5. Extension to Elliptical Orbits
+
+For elliptical orbits, replace $r$ with the **semi-major axis** $a$:
+
+$$
+T^2 = \frac{4 \pi^2 a^3}{G (M + m)}
+$$
+
+Where:
+
+- $M$ and $m$ are the masses of the two bodies
+
+This version works for **binary stars**, **exoplanets**, and even **galactic orbits**.
