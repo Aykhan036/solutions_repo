@@ -238,54 +238,60 @@
 <hr/>
 <h2 id="4-implementation-python-simulation-visualizations">💻 4. Implementation (Python Simulation &amp; Visualizations)</h2>
 <p>Below is a Python script using the 4th-order Runge-Kutta method to simulate the forced damped pendulum:</p>
-<p>```python
-import numpy as np
-import matplotlib.pyplot as plt</p>
-<h1 id="parameters">Parameters</h1>
-<p>g = 9.81        # gravity
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+g = 9.81        # gravity
 L = 1.0         # pendulum length
 b = 0.2         # damping coefficient
 A = 1.2         # amplitude of driving force
-omega = 2/3     # frequency of driving force</p>
-<h1 id="time-settings">Time settings</h1>
-<p>dt = 0.01
+omega = 2/3     # frequency of driving force
+
+# Time settings
+dt = 0.01
 T = 100
 steps = int(T/dt)
-t = np.linspace(0, T, steps)</p>
-<h1 id="arrays">Arrays</h1>
-<p>theta = np.zeros(steps)
+t = np.linspace(0, T, steps)
+
+# Arrays
+theta = np.zeros(steps)
 omega_dot = np.zeros(steps)
 theta[0] = 0.2   # initial angle
-omega_dot[0] = 0 # initial angular velocity</p>
-<h1 id="equation-of-motion">Equation of motion</h1>
-<p>def d2theta_dt2(theta, omega_dot, t):
-    return -b<em>omega_dot - (g/L)</em>np.sin(theta) + A<em>np.cos(omega</em>t)</p>
-<h1 id="runge-kutta-4">Runge-Kutta 4</h1>
-<p>for i in range(steps-1):
+omega_dot[0] = 0 # initial angular velocity
+
+# Equation of motion
+def d2theta_dt2(theta, omega_dot, t):
+    return -b*omega_dot - (g/L)*np.sin(theta) + A*np.cos(omega*t)
+
+# Runge-Kutta 4
+for i in range(steps-1):
     k1_omega = dt * d2theta_dt2(theta[i], omega_dot[i], t[i])
-    k1_theta = dt * omega_dot[i]</p>
-<pre><code>k2_omega = dt * d2theta_dt2(theta[i] + 0.5*k1_theta, omega_dot[i] + 0.5*k1_omega, t[i] + 0.5*dt)
-k2_theta = dt * (omega_dot[i] + 0.5*k1_omega)
+    k1_theta = dt * omega_dot[i]
 
-k3_omega = dt * d2theta_dt2(theta[i] + 0.5*k2_theta, omega_dot[i] + 0.5*k2_omega, t[i] + 0.5*dt)
-k3_theta = dt * (omega_dot[i] + 0.5*k2_omega)
+    k2_omega = dt * d2theta_dt2(theta[i] + 0.5*k1_theta, omega_dot[i] + 0.5*k1_omega, t[i] + 0.5*dt)
+    k2_theta = dt * (omega_dot[i] + 0.5*k1_omega)
 
-k4_omega = dt * d2theta_dt2(theta[i] + k3_theta, omega_dot[i] + k3_omega, t[i] + dt)
-k4_theta = dt * (omega_dot[i] + k3_omega)
+    k3_omega = dt * d2theta_dt2(theta[i] + 0.5*k2_theta, omega_dot[i] + 0.5*k2_omega, t[i] + 0.5*dt)
+    k3_theta = dt * (omega_dot[i] + 0.5*k2_omega)
 
-omega_dot[i+1] = omega_dot[i] + (1/6)*(k1_omega + 2*k2_omega + 2*k3_omega + k4_omega)
-theta[i+1] = theta[i] + (1/6)*(k1_theta + 2*k2_theta + 2*k3_theta + k4_theta)
-</code></pre>
-<h1 id="plot">Plot</h1>
-<p>plt.figure(figsize=(10,4))
+    k4_omega = dt * d2theta_dt2(theta[i] + k3_theta, omega_dot[i] + k3_omega, t[i] + dt)
+    k4_theta = dt * (omega_dot[i] + k3_omega)
+
+    omega_dot[i+1] = omega_dot[i] + (1/6)*(k1_omega + 2*k2_omega + 2*k3_omega + k4_omega)
+    theta[i+1] = theta[i] + (1/6)*(k1_theta + 2*k2_theta + 2*k3_theta + k4_theta)
+
+# Plot
+plt.figure(figsize=(10,4))
 plt.plot(t, theta, label="Theta(t)")
 plt.xlabel("Time (s)")
 plt.ylabel("Angle (rad)")
 plt.title("Forced Damped Pendulum Motion")
 plt.grid(True)
 plt.legend()
-plt.show()</p>
-<p>```<img alt="alt text" src="../image-1.png"/>
+plt.show()
+</code></pre>
+<p><img alt="alt text" src="../image-1.png"/>
 <img alt="alt text" src="../image-2.png"/>
 <img alt="alt text" src="../image-4.png"/>
 <img alt="alt text" src="../image-5.png"/>
