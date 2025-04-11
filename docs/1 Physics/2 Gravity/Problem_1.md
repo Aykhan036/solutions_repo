@@ -34,3 +34,5 @@ plt.show()
 R_moon = 3.844e8  # in meters
 T_moon = orbital_period(R_moon)
 print(f"Orbital period of the Moon around Earth: {T_moon / (60 * 60 * 24):.2f} days")
+
+https://colab.research.google.com/drive/1w2VFAx_vHqH_MjsYttkpVH8_P_HGvs81?usp=sharing
