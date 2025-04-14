@@ -105,38 +105,31 @@ This version works for **binary stars**, **exoplanets**, and even **galactic orb
 
 fig, axs = plt.subplots(2, 2, figsize=(12, 10))
 
-# 1. T vs r
-axs[0, 0].plot(radii, periods, color='green')
-axs[0, 0].set_title("Orbital Period vs Radius")
-axs[0, 0].set_xlabel("Orbital Radius (m)")
-axs[0, 0].set_ylabel("Orbital Period (s)")
-axs[0, 0].grid(True)
+import numpy as np
+import matplotlib.pyplot as plt
 
-# 2. log(T) vs log(r)
-axs[0, 1].plot(np.log10(radii), np.log10(periods), color='purple')
-axs[0, 1].set_title("log(T) vs log(r)")
-axs[0, 1].set_xlabel("log10(Radius)")
-axs[0, 1].set_ylabel("log10(Period)")
-axs[0, 1].grid(True)
+# Constants
+G = 6.67430e-11  # Gravitational constant (m^3 kg^-1 s^-2)
+M = 5.972e24     # Mass of the Earth (kg)
 
-# 3. T^2 vs r^3 (Already seen)
-axs[1, 0].plot(radii_cubed, periods_squared, color='blue')
-axs[1, 0].set_title("T² vs r³")
-axs[1, 0].set_xlabel("Radius³ (m³)")
-axs[1, 0].set_ylabel("Period² (s²)")
-axs[1, 0].grid(True)
+# Orbital radii (m)
+radii = np.linspace(7e6, 4.2e7, 100)  # from ~7000 km to ~42000 km
 
-# 4. T/r^(3/2) ratio check
-ratio = periods / (radii ** 1.5)
-axs[1, 1].plot(radii, ratio, color='red')
-axs[1, 1].set_title("T / r^(3/2) (Should be Constant)")
-axs[1, 1].set_xlabel("Orbital Radius (m)")
-axs[1, 1].set_ylabel("T / r^(3/2)")
-axs[1, 1].grid(True)
+# Compute orbital periods using Kepler's 3rd Law for circular orbits
+T_squared = (4 * np.pi**2 * radii**3) / (G * M)
+r_cubed = radii**3
 
-plt.suptitle("Visualizations Supporting Kepler's Third Law", fontsize=16)
-plt.tight_layout(rect=[0, 0, 1, 0.96])
+# Plotting
+plt.figure(figsize=(10, 6))
+plt.plot(r_cubed, T_squared, label='Kepler’s Third Law')
+plt.title('$T^2$ vs $r^3$ (Kepler’s Third Law)')
+plt.xlabel('Orbital Radius Cubed $r^3$ (m³)')
+plt.ylabel('Orbital Period Squared $T^2$ (s²)')
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
 plt.show()
+
 ## 
 import numpy as np
 import matplotlib.pyplot as plt
