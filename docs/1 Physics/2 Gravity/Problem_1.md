@@ -140,37 +140,6 @@ plt.show()
 ## 
 import numpy as np
 import matplotlib.pyplot as plt
-
-
-
-# 1. T vs r
-axs[0, 0].plot(radii, periods, color='green')
-axs[0, 0].set_title("Orbital Period vs Radius")
-axs[0, 0].set_xlabel("Orbital Radius (m)")
-axs[0, 0].set_ylabel("Orbital Period (s)")
-axs[0, 0].grid(True)
-
-# 2. log(T) vs log(r)
-axs[0, 1].plot(log_radii, log_periods, color='purple')
-axs[0, 1].set_title("log(T) vs log(r)")
-axs[0, 1].set_xlabel("log10(Radius)")
-axs[0, 1].set_ylabel("log10(Period)")
-axs[0, 1].grid(True)
-
-# 3. T² vs r³
-axs[1, 0].plot(radii_cubed, periods_squared, color='blue')
-axs[1, 0].set_title("T² vs r³")
-axs[1, 0].set_xlabel("Radius³ (m³)")
-axs[1, 0].set_ylabel("Period² (s²)")
-axs[1, 0].grid(True)
-
-# 4. T / r^(3/2)
-axs[1, 1].plot(radii, ratio, color='red')
-axs[1, 1].set_title("T / r^(3/2) (Should be Constant)")
-axs[1, 1].set_xlabel("Orbital Radius (m)")
-axs[1, 1].set_ylabel("T / r^(3/2)")
-axs[1, 1].grid(True)
-
 plt.suptitle("Visualizations Supporting Kepler's Third Law", fontsize=16)
 plt.tight_layout(rect=[0, 0, 1, 0.96])
 plt.show()
