@@ -289,32 +289,8 @@ plt.tight_layout(rect=[0, 0, 1, 0.96])
 plt.show()</p>
 <h2 id="_1"></h2>
 <p>import numpy as np
-import matplotlib.pyplot as plt</p>
-<h1 id="1-t-vs-r_1">1. T vs r</h1>
-<p>axs[0, 0].plot(radii, periods, color='green')
-axs[0, 0].set_title("Orbital Period vs Radius")
-axs[0, 0].set_xlabel("Orbital Radius (m)")
-axs[0, 0].set_ylabel("Orbital Period (s)")
-axs[0, 0].grid(True)</p>
-<h1 id="2-logt-vs-logr_1">2. log(T) vs log(r)</h1>
-<p>axs[0, 1].plot(log_radii, log_periods, color='purple')
-axs[0, 1].set_title("log(T) vs log(r)")
-axs[0, 1].set_xlabel("log10(Radius)")
-axs[0, 1].set_ylabel("log10(Period)")
-axs[0, 1].grid(True)</p>
-<h1 id="3-t2-vs-r3">3. T² vs r³</h1>
-<p>axs[1, 0].plot(radii_cubed, periods_squared, color='blue')
-axs[1, 0].set_title("T² vs r³")
-axs[1, 0].set_xlabel("Radius³ (m³)")
-axs[1, 0].set_ylabel("Period² (s²)")
-axs[1, 0].grid(True)</p>
-<h1 id="4-t-r32">4. T / r^(3/2)</h1>
-<p>axs[1, 1].plot(radii, ratio, color='red')
-axs[1, 1].set_title("T / r^(3/2) (Should be Constant)")
-axs[1, 1].set_xlabel("Orbital Radius (m)")
-axs[1, 1].set_ylabel("T / r^(3/2)")
-axs[1, 1].grid(True)</p>
-<p>plt.suptitle("Visualizations Supporting Kepler's Third Law", fontsize=16)
+import matplotlib.pyplot as plt
+plt.suptitle("Visualizations Supporting Kepler's Third Law", fontsize=16)
 plt.tight_layout(rect=[0, 0, 1, 0.96])
 plt.show()</p>
 <p><img alt="alt text" src="../image.png"/>
