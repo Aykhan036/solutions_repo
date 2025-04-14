@@ -96,5 +96,5 @@ plt.show()
 
 Colab
 
-[Angel](https://colab.research.google.com/drive/1vXPEEPSD0Y3ibrs5ezf4kH3yBB92C4Ow?usp=sharing)
+[My colab code](https://colab.research.google.com/drive/1vXPEEPSD0Y3ibrs5ezf4kH3yBB92C4Ow?usp=sharing)
 
