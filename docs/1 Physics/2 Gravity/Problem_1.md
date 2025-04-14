@@ -138,6 +138,60 @@ plt.suptitle("Visualizations Supporting Kepler's Third Law", fontsize=16)
 plt.tight_layout(rect=[0, 0, 1, 0.96])
 plt.show()
 ## 
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Sabitler
+G = 6.67430e-11  # Evrensel kütle çekim sabiti (m^3 kg^-1 s^-2)
+M = 5.972e24     # Dünya'nın kütlesi (kg)
+
+# Farklı yarıçaplar için simülasyon yap (örneğin 10 farklı mesafe)
+radii = np.linspace(1e7, 4e8, 100)  # 10 milyon m ile 400 milyon m arası
+
+# Orbital period hesapla (T = 2π * sqrt(r³ / GM))
+periods = 2 * np.pi * np.sqrt(radii**3 / (G * M))
+
+# Diğer görseller için gerekli veriler
+periods_squared = periods ** 2
+radii_cubed = radii ** 3
+log_radii = np.log10(radii)
+log_periods = np.log10(periods)
+ratio = periods / (radii ** 1.5)
+
+# Görselleştirme
+fig, axs = plt.subplots(2, 2, figsize=(12, 10))
+
+# 1. T vs r
+axs[0, 0].plot(radii, periods, color='green')
+axs[0, 0].set_title("Orbital Period vs Radius")
+axs[0, 0].set_xlabel("Orbital Radius (m)")
+axs[0, 0].set_ylabel("Orbital Period (s)")
+axs[0, 0].grid(True)
+
+# 2. log(T) vs log(r)
+axs[0, 1].plot(log_radii, log_periods, color='purple')
+axs[0, 1].set_title("log(T) vs log(r)")
+axs[0, 1].set_xlabel("log10(Radius)")
+axs[0, 1].set_ylabel("log10(Period)")
+axs[0, 1].grid(True)
+
+# 3. T² vs r³
+axs[1, 0].plot(radii_cubed, periods_squared, color='blue')
+axs[1, 0].set_title("T² vs r³")
+axs[1, 0].set_xlabel("Radius³ (m³)")
+axs[1, 0].set_ylabel("Period² (s²)")
+axs[1, 0].grid(True)
+
+# 4. T / r^(3/2)
+axs[1, 1].plot(radii, ratio, color='red')
+axs[1, 1].set_title("T / r^(3/2) (Should be Constant)")
+axs[1, 1].set_xlabel("Orbital Radius (m)")
+axs[1, 1].set_ylabel("T / r^(3/2)")
+axs[1, 1].grid(True)
+
+plt.suptitle("Visualizations Supporting Kepler's Third Law", fontsize=16)
+plt.tight_layout(rect=[0, 0, 1, 0.96])
+plt.show()
 
 
 ![alt text](image.png)
