@@ -1,3 +1,6 @@
+#Probelm whit pandelon
+
+```python
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -80,7 +83,6 @@ fig2.suptitle('Phase Diagrams (θ vs ω) for Different Scenarios', fontsize=16)
 
 plt.tight_layout(rect=[0, 0, 1, 0.95])
 plt.show()
-
 ```
 
 
@@ -89,5 +91,6 @@ plt.show()
 ![alt text](image-4.png)
 ![alt text](image-5.png)
 ![alt text](image-6.png)
-![alt text](image-7.png)
+![alt text](image-7.png) 
+
 [My colab code] https://colab.research.google.com/drive/1w2VFAx_vHqH_MjsYttkpVH8_P_HGvs81?usp=sharing
