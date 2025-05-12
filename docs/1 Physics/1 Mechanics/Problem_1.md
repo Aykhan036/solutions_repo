@@ -1,52 +1,94 @@
+# Projectile Motion: Range as a Function of the Angle of Projection
+
+## 1. Theoretical Foundation
+
+We begin with the basic equations of motion for a projectile launched at angle $\theta$ with speed $v_0$, assuming:
+
+- No air resistance  
+- Constant gravitational acceleration $g$  
+- Launch height = 0  
+
+### Decomposing Motion
+
+- Horizontal velocity: $v_{0x} = v_0 \cos\theta$
+- Vertical velocity: $v_{0y} = v_0 \sin\theta$
+
+Time of flight ($T$) until it hits the ground:
+
+$$
+T = \frac{2v_0 \sin\theta}{g}
+$$
+
+Range $R$ is the horizontal distance traveled:
+
+$$
+R = v_{0x} \cdot T = v_0 \cos\theta \cdot \frac{2v_0 \sin\theta}{g} = \frac{v_0^2 \sin(2\theta)}{g}
+$$
+
+This is the governing equation for range as a function of angle.
+
+---
+
+## 2. Analysis of the Range
+
+### Key Observations
+
+- Maximum range occurs at $\theta = 45^\circ$ since $\sin(2\theta)$ reaches its peak at $\theta = 45^\circ$
+- Symmetry: $R(\theta) = R(90^\circ - \theta)$
+
+### Effect of Parameters
+
+- Initial velocity $v_0$: Range increases quadratically with $v_0$
+- Gravity $g$: Range is inversely proportional to $g$ (lower gravity = farther range)
+
+---
+
+## 3. Practical Applications
+
+This model can apply to:
+
+- Sports (e.g., soccer, basketball) – adjusting launch angles for maximum range  
+- Engineering (e.g., missile trajectory, water jets)  
+- Astrophysics – modeling orbits and interplanetary trajectories (with modifications)  
+
+### Beyond Ideal Model
+
+Real-world considerations:
+- Air resistance (drag)
+- Wind
+- Non-zero launch height
+- Uneven terrain
+
+These factors require numerical integration and more complex models.
+
+---
+
+## 4. Implementation: Simulation in Python
+
+```python
 import numpy as np
 import matplotlib.pyplot as plt
 
-g = 9.81  # acceleration due to gravity (m/s^2)
+def compute_range(v0, g, angles_deg):
+    angles_rad = np.radians(angles_deg)
+    return (v0**2 * np.sin(2 * angles_rad)) / g
 
-def projectile_path(v0, angle_deg, g=9.81):
-    theta = np.radians(angle_deg)
-    t_flight = 2 * v0 * np.sin(theta) / g
-    t = np.linspace(0, t_flight, 300)
-    x = v0 * np.cos(theta) * t
-    y = v0 * np.sin(theta) * t - 0.5 * g * t**2
-    return x, y
+# Parameters
+v0 = 50  # m/s
+g_values = [9.81, 3.71, 1.62]  # Earth, Mars, Moon
+angles = np.linspace(0, 90, 500)
 
-# === Case (a): Varying initial speed at 45° ===
-angles_case_a = [45]  # constant angle
-speeds_case_a = [30, 40, 50]
+# Plotting
+plt.figure(figsize=(10, 6))
+for g in g_values:
+    R = compute_range(v0, g, angles)
+    plt.plot(angles, R, label=f'g = {g} m/s²')
 
-# === Case (b): Varying angle at fixed speed of 50 m/s ===
-v0_case_b = 50
-angles_case_b = [15, 45, 75]
-
-# Plotting both subfigures
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 10))
-
-# Subplot (a)
-for v0 in speeds_case_a:
-    x, y = projectile_path(v0, 45)
-    ax1.plot(x, y, label=f'{v0} m/s')
-ax1.set_title('(a) Varying Initial Speed at 45°')
-ax1.set_xlabel('Horizontal Distance (m)')
-ax1.set_ylabel('Vertical Distance (m)')
-ax1.legend()
-ax1.grid(True)
-ax1.set_xlim(0, 270)
-ax1.set_ylim(0, 70)
-
-# Subplot (b)
-for angle in angles_case_b:
-    x, y = projectile_path(v0_case_b, angle)
-    ax2.plot(x, y, label=f'{angle}°')
-ax2.set_title('(b) Fixed Speed (50 m/s) at Different Angles')
-ax2.set_xlabel('Horizontal Distance (m)')
-ax2.set_ylabel('Vertical Distance (m)')
-ax2.legend()
-ax2.grid(True)
-ax2.set_xlim(0, 270)
-ax2.set_ylim(0, 140)
-
-plt.tight_layout()
+plt.title('Range vs Angle of Projection')
+plt.xlabel('Angle (degrees)')
+plt.ylabel('Range (meters)')
+plt.legend()
+plt.grid(True)
 plt.show()
 
 ```
