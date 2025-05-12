@@ -46,7 +46,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal">1 Mechanics</a>
 <ul>
-<li class="toctree-l2"><a class="reference internal" href="../../1%20Mechanics/Problem_1/">Projectile Motion: Range as a Function of the Angle of Projection</a>
+<li class="toctree-l2"><a class="reference internal" href="../../1%20Mechanics/Problem_1/">Problem 1</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../1%20Mechanics/Problem_2/">Probelm whit pandelon</a>
 </li>
@@ -172,6 +172,78 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="projectile-motion-range-as-a-function-of-the-angle-of-projection">Projectile Motion: Range as a Function of the Angle of Projection</h1>
+<h2 id="1-theoretical-foundation">1. Theoretical Foundation</h2>
+<p>We begin with the basic equations of motion for a projectile launched at angle <span class="arithmatex">\(\theta\)</span> with speed <span class="arithmatex">\(v_0\)</span>, assuming:</p>
+<ul>
+<li>No air resistance  </li>
+<li>Constant gravitational acceleration <span class="arithmatex">\(g\)</span> </li>
+<li>Launch height = 0  </li>
+</ul>
+<h3 id="decomposing-motion">Decomposing Motion</h3>
+<ul>
+<li>Horizontal velocity: <span class="arithmatex">\(v_{0x} = v_0 \cos\theta\)</span></li>
+<li>Vertical velocity: <span class="arithmatex">\(v_{0y} = v_0 \sin\theta\)</span></li>
+</ul>
+<p>Time of flight (<span class="arithmatex">\(T\)</span>) until it hits the ground:</p>
+<div class="arithmatex">\[
+T = \frac{2v_0 \sin\theta}{g}
+\]</div>
+<p>Range <span class="arithmatex">\(R\)</span> is the horizontal distance traveled:</p>
+<div class="arithmatex">\[
+R = v_{0x} \cdot T = v_0 \cos\theta \cdot \frac{2v_0 \sin\theta}{g} = \frac{v_0^2 \sin(2\theta)}{g}
+\]</div>
+<p>This is the governing equation for range as a function of angle.</p>
+<hr/>
+<h2 id="2-analysis-of-the-range">2. Analysis of the Range</h2>
+<h3 id="key-observations">Key Observations</h3>
+<ul>
+<li>Maximum range occurs at <span class="arithmatex">\(\theta = 45^\circ\)</span> since <span class="arithmatex">\(\sin(2\theta)\)</span> reaches its peak at <span class="arithmatex">\(\theta = 45^\circ\)</span></li>
+<li>Symmetry: <span class="arithmatex">\(R(\theta) = R(90^\circ - \theta)\)</span></li>
+</ul>
+<h3 id="effect-of-parameters">Effect of Parameters</h3>
+<ul>
+<li>Initial velocity <span class="arithmatex">\(v_0\)</span>: Range increases quadratically with <span class="arithmatex">\(v_0\)</span></li>
+<li>Gravity <span class="arithmatex">\(g\)</span>: Range is inversely proportional to <span class="arithmatex">\(g\)</span> (lower gravity = farther range)</li>
+</ul>
+<hr/>
+<h2 id="3-practical-applications">3. Practical Applications</h2>
+<p>This model can apply to:</p>
+<ul>
+<li>Sports (e.g., soccer, basketball) – adjusting launch angles for maximum range  </li>
+<li>Engineering (e.g., missile trajectory, water jets)  </li>
+<li>Astrophysics – modeling orbits and interplanetary trajectories (with modifications)  </li>
+</ul>
+<h3 id="beyond-ideal-model">Beyond Ideal Model</h3>
+<p>Real-world considerations:
+- Air resistance (drag)
+- Wind
+- Non-zero launch height
+- Uneven terrain</p>
+<p>These factors require numerical integration and more complex models.</p>
+<hr/>
+<h2 id="4-implementation-simulation-in-python">4. Implementation: Simulation in Python</h2>
+<p>```python
+import numpy as np
+import matplotlib.pyplot as plt</p>
+<p>def compute_range(v0, g, angles_deg):
+    angles_rad = np.radians(angles_deg)
+    return (v0**2 * np.sin(2 * angles_rad)) / g</p>
+<h1 id="parameters">Parameters</h1>
+<p>v0 = 50  # m/s
+g_values = [9.81, 3.71, 1.62]  # Earth, Mars, Moon
+angles = np.linspace(0, 90, 500)</p>
+<h1 id="plotting">Plotting</h1>
+<p>plt.figure(figsize=(10, 6))
+for g in g_values:
+    R = compute_range(v0, g, angles)
+    plt.plot(angles, R, label=f'g = {g} m/s²')</p>
+<p>plt.title('Range vs Angle of Projection')
+plt.xlabel('Angle (degrees)')
+plt.ylabel('Range (meters)')
+plt.legend()
+plt.grid(True)
+plt.show()</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
