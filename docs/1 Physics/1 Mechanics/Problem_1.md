@@ -140,3 +140,6 @@ plt.show()
 ![alt text](image-10.png)
 
 ![alt text](image-11.png)
+
+## colab 
+[Mechanic](https://colab.research.google.com/drive/1PeNt1figNeVknZPvcuxaxnJ9-ZEK0a8S?usp=sharing) 
