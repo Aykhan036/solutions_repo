@@ -48,6 +48,24 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#projectile-motion-range-vs-angle-of-projection-an-in-depth-perspective">Projectile Motion: Range vs. Angle of Projection – An In-Depth Perspective</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction-the-physics-behind-the-arc">Introduction: The Physics Behind the Arc</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#1-theoretical-framework-building-the-mathematical-model">1. Theoretical Framework: Building the Mathematical Model</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-range-optimization-a-quantitative-analysis">2. Range Optimization: A Quantitative Analysis</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-applications-in-the-real-world-from-theory-to-practice">3. Applications in the Real World: From Theory to Practice</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#4-computational-simulations-from-ideal-to-realistic">4. Computational Simulations: From Ideal to Realistic</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#toward-precision-extending-the-models-scope">Toward Precision: Extending the Model’s Scope</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#conclusion-uncovering-the-layers-of-motion">Conclusion: Uncovering the Layers of Motion</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Probelm whit pandelon</a>
@@ -171,83 +189,73 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<p>import numpy as np
-import matplotlib.pyplot as plt</p>
-<h1 id="ideal-trajectory-no-drag">==== IDEAL TRAJECTORY (No Drag) ====</h1>
-<p>def trajectory_no_drag(v0, theta_deg, g=9.81, resolution=100):
-    theta = np.radians(theta_deg)
-    T = 2 * v0 * np.sin(theta) / g
-    t = np.linspace(0, T, resolution)
-    x = v0 * np.cos(theta) * t
-    y = v0 * np.sin(theta) * t - 0.5 * g * t**2
-    return x, y</p>
-<p>def plot_multiple_trajectories(v0, angle_list, g=9.81):
-    plt.figure()
-    for angle in angle_list:
-        x, y = trajectory_no_drag(v0, angle, g)
-        plt.plot(x, y, label=f"θ = {angle}°")
-    plt.title(f"Ideal Trajectories (v0 = {v0} m/s)")
-    plt.xlabel("Horizontal Distance (m)")
-    plt.ylabel("Vertical Distance (m)")
-    plt.grid(True)
-    plt.legend()
-    plt.savefig("ideal_trajectories.png")
-    plt.show()</p>
-<h1 id="trajectory-with-air-drag">==== TRAJECTORY WITH AIR DRAG ====</h1>
-<p>def trajectory_with_drag(v0, theta_deg, drag_coeff=0.01, dt=0.01, g=9.81, t_max=10):
-    theta = np.radians(theta_deg)
-    vx = v0 * np.cos(theta)
-    vy = v0 * np.sin(theta)
-    x = y = 0
-    x_list, y_list = [x], [y]
-    t = 0</p>
-<pre><code>while y &gt;= 0 and t &lt;= t_max:
-    v = np.hypot(vx, vy)
-    ax = -drag_coeff * v * vx
-    ay = -g - drag_coeff * v * vy
-    vx += ax * dt
-    vy += ay * dt
-    x += vx * dt
-    y += vy * dt
-    x_list.append(x)
-    y_list.append(y)
-    t += dt
-
-return x_list, y_list
-</code></pre>
-<p>def plot_drag_trajectories(v0, angle_list, drag_coeff=0.01):
-    plt.figure()
-    for angle in angle_list:
-        x, y = trajectory_with_drag(v0, angle, drag_coeff)
-        plt.plot(x, y, label=f"θ = {angle}°")
-    plt.title(f"Trajectories with Air Drag (v0 = {v0} m/s, drag = {drag_coeff})")
-    plt.xlabel("Horizontal Distance (m)")
-    plt.ylabel("Vertical Distance (m)")
-    plt.grid(True)
-    plt.legend()
-    plt.savefig("drag_trajectories.png")
-    plt.show()</p>
-<h1 id="range-vs-angle-ideal">==== RANGE vs ANGLE (Ideal) ====</h1>
-<p>def range_vs_angle(v0, g=9.81):
-    angles = np.linspace(0, 90, 300)
-    ranges = (v0**2 / g) * np.sin(2 * np.radians(angles))
-    plt.figure()
-    plt.plot(angles, ranges, color='purple')
-    plt.title(f"Range vs. Projection Angle (v0 = {v0} m/s)")
-    plt.xlabel("Angle (degrees)")
-    plt.ylabel("Range (meters)")
-    plt.grid(True)
-    plt.savefig("range_vs_angle.png")
-    plt.show()</p>
-<h1 id="usage">==== USAGE ====</h1>
-<p>v0 = 25
-angles = [30, 45, 60]</p>
-<h1 id="plot-ideal-trajectories">Plot ideal trajectories</h1>
-<p>plot_multiple_trajectories(v0, angles)</p>
-<h1 id="plot-trajectories-with-air-drag">Plot trajectories with air drag</h1>
-<p>plot_drag_trajectories(v0, angles, drag_coeff=0.02)</p>
-<h1 id="plot-range-vs-angle">Plot range vs. angle</h1>
-<p>range_vs_angle(v0)</p>
+<h1 id="problem-1">Problem 1</h1>
+<h2 id="projectile-motion-range-vs-angle-of-projection-an-in-depth-perspective">Projectile Motion: Range vs. Angle of Projection – An In-Depth Perspective</h2>
+<h3 id="introduction-the-physics-behind-the-arc">Introduction: The Physics Behind the Arc</h3>
+<p>Projectile motion is a cornerstone of classical mechanics, offering a window into how forces shape the motion of objects through space. Whether launching a basketball into a hoop or sending a probe to Mars, the same physical laws apply. This discussion focuses on the trajectory of projectiles and specifically how the range is influenced by the angle of launch. By dissecting the core physics, exploring analytical methods, and considering modern computational techniques, we uncover the profound elegance behind motion through the air.</p>
+<hr/>
+<h3 id="1-theoretical-framework-building-the-mathematical-model">1. Theoretical Framework: Building the Mathematical Model</h3>
+<p>We begin by applying Newton’s laws to a two-dimensional motion scenario, where the only acting force is gravity. The acceleration vector is constant and directed downward, defined as:</p>
+<div class="arithmatex">\[
+\vec{a} = (0, -g)
+\]</div>
+<p>Solving the second-order differential equations for position and velocity, we derive:</p>
+<div class="arithmatex">\[
+v_x(t) = v_0 \cos(\theta)
+\]</div>
+<div class="arithmatex">\[
+v_y(t) = v_0 \sin(\theta) - gt
+\]</div>
+<p>Upon integrating, we obtain the position functions:</p>
+<div class="arithmatex">\[
+x(t) = v_0 \cos(\theta) t
+\]</div>
+<div class="arithmatex">\[
+y(t) = v_0 \sin(\theta) t - \frac{1}{2}gt^2
+\]</div>
+<p>These equations trace the parabolic path of any projectile launched with an initial speed <span class="arithmatex">\(v_0\)</span> at an angle <span class="arithmatex">\(\theta\)</span>.</p>
+<hr/>
+<h3 id="2-range-optimization-a-quantitative-analysis">2. Range Optimization: A Quantitative Analysis</h3>
+<p>The horizontal distance traveled, or <strong>range</strong> <span class="arithmatex">\(R\)</span>, is derived under the condition that the projectile returns to its original height:</p>
+<div class="arithmatex">\[
+R = \frac{v_0^2 \sin(2\theta)}{g}
+\]</div>
+<p>This result highlights several key insights:</p>
+<ul>
+<li>The range is maximized at a launch angle of <span class="arithmatex">\(45^\circ\)</span>.</li>
+<li>Increasing the initial velocity has a <strong>quadratic</strong> effect on the range.</li>
+<li>The gravitational constant <span class="arithmatex">\(g\)</span> <strong>inversely</strong> affects how far the object travels.</li>
+</ul>
+<hr/>
+<h3 id="3-applications-in-the-real-world-from-theory-to-practice">3. Applications in the Real World: From Theory to Practice</h3>
+<p>The principles of projectile motion extend far beyond academic examples:</p>
+<ul>
+<li><strong>Sports</strong>: Analyzing the best angles for throws or kicks improves performance.</li>
+<li><strong>Defense Systems</strong>: Trajectory calculations guide targeting and impact predictions.</li>
+<li><strong>Engineering</strong>: Used in everything from sprinkler design to drone movement.</li>
+<li><strong>Aerospace</strong>: Space agencies model interplanetary transfers using advanced variations of projectile theory.</li>
+</ul>
+<hr/>
+<h3 id="4-computational-simulations-from-ideal-to-realistic">4. Computational Simulations: From Ideal to Realistic</h3>
+<p>Ideal models often ignore crucial factors. To better mimic reality, simulations incorporate:</p>
+<ul>
+<li><strong>Air drag</strong>, which decelerates the projectile.</li>
+<li><strong>Altitude-dependent gravity</strong>, especially relevant for high-altitude or space-bound motion.</li>
+<li><strong>Wind forces</strong>, introducing asymmetry into the trajectory.</li>
+<li><strong>Digital terrain mapping</strong>, to simulate impacts on realistic landscapes.</li>
+</ul>
+<hr/>
+<h3 id="toward-precision-extending-the-models-scope">Toward Precision: Extending the Model’s Scope</h3>
+<p>Advanced simulations may integrate:</p>
+<ul>
+<li><strong>Dynamic drag coefficients</strong> responsive to changes in velocity and air properties.</li>
+<li><strong>Rotational forces</strong> like the Magnus effect, which alter the path of spinning objects.</li>
+<li><strong>Earth’s rotation</strong> via the Coriolis force, critical for long-range ballistic trajectories.</li>
+<li><strong>Sophisticated numerical solvers</strong>, such as Runge-Kutta, to handle non-linear systems.</li>
+</ul>
+<hr/>
+<h3 id="conclusion-uncovering-the-layers-of-motion">Conclusion: Uncovering the Layers of Motion</h3>
+<p>What begins as a simple parabolic flight evolves into a complex, multifaceted problem when extended to real-world contexts. Through theory, application, and simulation, projectile motion provides a powerful framework for understanding and predicting motion in both natural and engineered systems.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
