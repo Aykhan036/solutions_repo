@@ -84,3 +84,59 @@ Advanced simulations may integrate:
 
 ### Conclusion: Uncovering the Layers of Motion  
 What begins as a simple parabolic flight evolves into a complex, multifaceted problem when extended to real-world contexts. Through theory, application, and simulation, projectile motion provides a powerful framework for understanding and predicting motion in both natural and engineered systems.
+
+### Python Simulation
+```python 
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+g = 9.81  # gravity (m/s^2)
+v0 = 30   # initial velocity (m/s)
+angles_deg = np.array([15, 30, 45, 60, 75])  # angles in degrees
+colors = ['b', 'g', 'r', 'c', 'm']  # for plotting
+
+# Time of flight function
+def time_of_flight(v0, theta):
+    return (2 * v0 * np.sin(theta)) / g
+
+# Trajectory function
+def trajectory(v0, theta, t):
+    x = v0 * np.cos(theta) * t
+    y = v0 * np.sin(theta) * t - 0.5 * g * t**2
+    return x, y
+
+# 1. Plot trajectories for various angles
+plt.figure(figsize=(10, 6))
+for angle_deg, color in zip(angles_deg, colors):
+    theta = np.radians(angle_deg)
+    t_flight = time_of_flight(v0, theta)
+    t = np.linspace(0, t_flight, num=100)
+    x, y = trajectory(v0, theta, t)
+    plt.plot(x, y, label=f"{angle_deg}°", color=color)
+
+plt.title("Projectile Trajectories at Different Launch Angles")
+plt.xlabel("Horizontal Distance (m)")
+plt.ylabel("Vertical Distance (m)")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# 2. Range vs. Angle plot
+angles = np.radians(np.linspace(0, 90, 500))
+ranges = (v0**2 * np.sin(2 * angles)) / g
+
+plt.figure(figsize=(10, 5))
+plt.plot(np.degrees(angles), ranges, color='darkorange')
+plt.title("Range vs. Launch Angle")
+plt.xlabel("Launch Angle (degrees)")
+plt.ylabel("Range (m)")
+plt.grid(True)
+plt.axvline(45, linestyle='--', color='gray', label='Maximum Range (45°)')
+plt.legend()
+plt.show()
+```
+
+![alt text](image-10.png)
+
+![alt text](image-11.png)
