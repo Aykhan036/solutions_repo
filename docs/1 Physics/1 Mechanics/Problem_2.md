@@ -1,4 +1,5 @@
-# 1. Theoretical Foundation
+# 1. Problem_2
+ Theoretical Foundation
 
 The motion of a forced damped pendulum is governed by the nonlinear second-order differential equation:
 
