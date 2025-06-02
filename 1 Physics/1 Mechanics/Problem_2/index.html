@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Probelm whit pandelon - Physics and Mathematics</title>
+<title>1. Theoretical Foundation - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Probelm whit pandelon";
+        var mkdocs_page_name = "1. Theoretical Foundation";
         var mkdocs_page_input_path = "1 Physics/1 Mechanics/Problem_2.md";
         var mkdocs_page_url = null;
       </script>
@@ -48,8 +48,12 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Problem 1</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Probelm whit pandelon</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">1. Theoretical Foundation</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#small-angle-approximation">Small-Angle Approximation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#resonance-conditions">Resonance Conditions</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -163,7 +167,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">1 Mechanics</li>
-<li class="breadcrumb-item active">Probelm whit pandelon</li>
+<li class="breadcrumb-item active">1. Theoretical Foundation</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,97 +175,106 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="probelm-whit-pandelon">Probelm whit pandelon</h1>
-<pre><code class="language-python">import numpy as np
-import matplotlib.pyplot as plt
-
-# Common parameters
-g = 9.81      # gravity
-L = 1.0       # length
-dt = 0.01
-T = 50
-steps = int(T/dt)
-t = np.linspace(0, T, steps)
-
-# Initial conditions
-theta0 = 0.2
-omega0 = 0
-
-def d2theta_dt2(theta, omega_dot, t, b, A, omega_drive):
-    return -b * omega_dot - (g/L) * np.sin(theta) + A * np.cos(omega_drive * t)
-
-def run_simulation(b, A, omega_drive):
-    theta = np.zeros(steps)
-    omega_dot = np.zeros(steps)
-    theta[0] = theta0
-    omega_dot[0] = omega0
-
-    for i in range(steps-1):
-        k1_omega = dt * d2theta_dt2(theta[i], omega_dot[i], t[i], b, A, omega_drive)
-        k1_theta = dt * omega_dot[i]
-
-        k2_omega = dt * d2theta_dt2(theta[i] + 0.5*k1_theta, omega_dot[i] + 0.5*k1_omega, t[i] + 0.5*dt, b, A, omega_drive)
-        k2_theta = dt * (omega_dot[i] + 0.5*k1_omega)
-
-        k3_omega = dt * d2theta_dt2(theta[i] + 0.5*k2_theta, omega_dot[i] + 0.5*k2_omega, t[i] + 0.5*dt, b, A, omega_drive)
-        k3_theta = dt * (omega_dot[i] + 0.5*k2_omega)
-
-        k4_omega = dt * d2theta_dt2(theta[i] + k3_theta, omega_dot[i] + k3_omega, t[i] + dt, b, A, omega_drive)
-        k4_theta = dt * (omega_dot[i] + k3_omega)
-
-        omega_dot[i+1] = omega_dot[i] + (1/6)*(k1_omega + 2*k2_omega + 2*k3_omega + k4_omega)
-        theta[i+1] = theta[i] + (1/6)*(k1_theta + 2*k2_theta + 2*k3_theta + k4_theta)
-
-    return theta, omega_dot
-
-# -------------------------------
-# 4 SCENARIOS
-# -------------------------------
-
-scenarios = {
-    "Pure Pendulum (no damping, no forcing)": {'b': 0, 'A': 0, 'omega_drive': 0},
-    "Damped Pendulum (b&gt;0, A=0)": {'b': 0.2, 'A': 0, 'omega_drive': 0},
-    "Forced Pendulum (b=0, A&gt;0)": {'b': 0, 'A': 1.2, 'omega_drive': 2/3},
-    "Damped + Forced (resonance-ish)": {'b': 0.2, 'A': 1.2, 'omega_drive': 2/3},
-}
-
-# --- Plotting ---
-fig1, axs1 = plt.subplots(2, 2, figsize=(14, 8))
-fig2, axs2 = plt.subplots(2, 2, figsize=(14, 8))
-
-axs1 = axs1.flatten()
-axs2 = axs2.flatten()
-
-for idx, (title, params) in enumerate(scenarios.items()):
-    theta, omega_dot = run_simulation(params['b'], params['A'], params['omega_drive'])
-
-    # Plot 1: Angle vs Time
-    axs1[idx].plot(t, theta)
-    axs1[idx].set_title(title)
-    axs1[idx].set_xlabel('Time (s)')
-    axs1[idx].set_ylabel('Angle (rad)')
-    axs1[idx].grid(True)
-
-    # Plot 2: Phase Diagram (theta vs omega_dot)
-    axs2[idx].plot(theta, omega_dot)
-    axs2[idx].set_title(title)
-    axs2[idx].set_xlabel('Angle (rad)')
-    axs2[idx].set_ylabel('Angular Velocity (rad/s)')
-    axs2[idx].grid(True)
-
-fig1.suptitle('Angle vs Time for Different Scenarios', fontsize=16)
-fig2.suptitle('Phase Diagrams (θ vs ω) for Different Scenarios', fontsize=16)
-
-plt.tight_layout(rect=[0, 0, 1, 0.95])
-plt.show()
-</code></pre>
-<p><img alt="alt text" src="../image-1.png"/>
-<img alt="alt text" src="../image-2.png"/>
-<img alt="alt text" src="../image-4.png"/>
-<img alt="alt text" src="../image-5.png"/>
-<img alt="alt text" src="../image-6.png"/>
-<img alt="alt text" src="../image-7.png"/> </p>
-<p>[My colab code] https://colab.research.google.com/drive/1w2VFAx_vHqH_MjsYttkpVH8_P_HGvs81?usp=sharing</p>
+<h1 id="1-theoretical-foundation">1. Theoretical Foundation</h1>
+<p>The motion of a forced damped pendulum is governed by the nonlinear second-order differential equation:</p>
+<div class="arithmatex">\[
+\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L} \sin\theta = A\cos(\omega t)
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(\theta(t)\)</span> is the angular displacement  </li>
+<li><span class="arithmatex">\(b\)</span> is the damping coefficient  </li>
+<li><span class="arithmatex">\(g\)</span> is the gravitational acceleration  </li>
+<li><span class="arithmatex">\(L\)</span> is the length of the pendulum  </li>
+<li><span class="arithmatex">\(A\)</span> is the amplitude of the external periodic driving force  </li>
+<li><span class="arithmatex">\(\omega\)</span> is the driving frequency</li>
+</ul>
+<h3 id="small-angle-approximation">Small-Angle Approximation</h3>
+<p>For small angles (<span class="arithmatex">\(|\theta| \ll 1\)</span>), we use the approximation <span class="arithmatex">\(\sin\theta \approx \theta\)</span>. The equation becomes:</p>
+<div class="arithmatex">\[
+\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L} \theta = A\cos(\omega t)
+\]</div>
+<p>This is a linear nonhomogeneous ordinary differential equation, describing a driven damped harmonic oscillator. Its general solution consists of:</p>
+<ul>
+<li>A <strong>transient component</strong> (decays over time due to damping)</li>
+<li>A <strong>steady-state oscillation</strong> at the driving frequency</li>
+</ul>
+<h3 id="resonance-conditions">Resonance Conditions</h3>
+<p>Resonance occurs when the driving frequency <span class="arithmatex">\(\omega\)</span> is close to the natural frequency of the pendulum:</p>
+<div class="arithmatex">\[
+\omega_0 = \sqrt{\frac{g}{L}}
+\]</div>
+<p>In this case, the amplitude of steady-state oscillations is maximized. Damping reduces the resonance peak and broadens the response curve. At very high damping, resonance may be suppressed.</p>
+<hr/>
+<h1 id="2-analysis-of-dynamics">2. Analysis of Dynamics</h1>
+<h3 id="influence-of-parameters">Influence of Parameters</h3>
+<p><strong>Damping coefficient <span class="arithmatex">\(b\)</span>:</strong></p>
+<ul>
+<li>Low damping: Oscillations persist longer; resonance more pronounced.  </li>
+<li>High damping: Oscillations die out quickly; motion becomes sluggish.  </li>
+</ul>
+<p><strong>Driving amplitude <span class="arithmatex">\(A\)</span>:</strong></p>
+<ul>
+<li>Small <span class="arithmatex">\(A\)</span>: Motion remains close to linear, predictable behavior.  </li>
+<li>Large <span class="arithmatex">\(A\)</span>: Nonlinearity dominates; complex and chaotic dynamics emerge.  </li>
+</ul>
+<p><strong>Driving frequency <span class="arithmatex">\(\omega\)</span>:</strong></p>
+<ul>
+<li>Close to <span class="arithmatex">\(\omega_0\)</span>: Resonance occurs.  </li>
+<li>Far from <span class="arithmatex">\(\omega_0\)</span>: Forced motion with smaller amplitude.</li>
+</ul>
+<h3 id="transition-to-chaos">Transition to Chaos</h3>
+<p>When nonlinearity (due to large <span class="arithmatex">\(\theta\)</span>) and driving are significant, the system can exhibit chaotic behavior—sensitive to initial conditions, aperiodic, and non-repeating. This transition is often studied using:</p>
+<ul>
+<li><strong>Phase portraits</strong>: Plots of <span class="arithmatex">\(\theta\)</span> vs. <span class="arithmatex">\(\dot{\theta}\)</span>, showing the system's trajectory in state space.  </li>
+<li><strong>Poincaré sections</strong>: Cross-sections of the phase space at intervals of the driving period to reveal periodic or chaotic structure.  </li>
+<li><strong>Bifurcation diagrams</strong>: Show how qualitative behavior changes as a parameter (e.g., <span class="arithmatex">\(A\)</span>) varies.</li>
+</ul>
+<hr/>
+<h1 id="3-practical-applications">3. Practical Applications</h1>
+<p>The forced damped pendulum serves as a model for various real-world systems:</p>
+<h3 id="mechanical-systems">Mechanical Systems:</h3>
+<ul>
+<li>Suspension bridges (e.g., Tacoma Narrows collapse) experience driven oscillations under wind.  </li>
+<li>Vibration absorbers and shock absorbers use damping principles to control motion.  </li>
+</ul>
+<h3 id="electrical-circuits">Electrical Circuits:</h3>
+<ul>
+<li>Driven RLC circuits behave identically to damped driven pendulums—capacitor voltage acts as <span class="arithmatex">\(\theta\)</span>, inductor resistance as damping.  </li>
+</ul>
+<h3 id="biomechanics">Biomechanics:</h3>
+<ul>
+<li>Human gait and limb motion can resemble pendulum-like oscillations, especially under periodic driving (e.g., treadmill walking).  </li>
+</ul>
+<h3 id="energy-harvesting">Energy Harvesting:</h3>
+<ul>
+<li>Pendulum-based devices can extract energy from periodic motion, such as wave or vibration energy.</li>
+</ul>
+<hr/>
+<h1 id="4-implementation-overview">4. Implementation Overview</h1>
+<p>Simulations and visualizations reveal insights into this system’s behavior:</p>
+<ul>
+<li><strong>Time series</strong> show regular, resonant, or chaotic oscillations.  </li>
+<li><strong>Phase diagrams</strong> illustrate fixed points, limit cycles, or strange attractors.  </li>
+<li><strong>Poincaré sections</strong> provide snapshots of system states, highlighting transitions to chaos.  </li>
+<li><strong>Bifurcation diagrams</strong> display how solutions change as parameters like <span class="arithmatex">\(A\)</span> or <span class="arithmatex">\(\omega\)</span> are varied.</li>
+</ul>
+<hr/>
+<h1 id="limitations-and-extensions">Limitations and Extensions</h1>
+<h3 id="limitations">Limitations</h3>
+<ul>
+<li>Sinusoidal forcing and linear damping may oversimplify real systems.  </li>
+<li>Small-angle approximation only valid for minor displacements.  </li>
+<li>No environmental noise or non-periodic forcing considered.  </li>
+</ul>
+<h3 id="potential-extensions">Potential Extensions</h3>
+<ul>
+<li><strong>Nonlinear damping</strong>: Model air resistance or material-specific behavior.  </li>
+<li><strong>Stochastic driving</strong>: Incorporate noise to study robustness and real-world applicability.  </li>
+<li><strong>Coupled pendulums</strong>: Model complex systems like clocks, power grids, or neural oscillators.  </li>
+</ul>
+<hr/>
+<p>This comprehensive investigation into the forced damped pendulum combines physics theory, system analysis, and real-world relevance, making it a cornerstone in the study of nonlinear and chaotic dynamics.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
