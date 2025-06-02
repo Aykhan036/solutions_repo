@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 3 - Physics and Mathematics</title>
+<title>Problem 3: Trajectories of a Freely Released Payload Near Earth - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 3";
+        var mkdocs_page_name = "Problem 3: Trajectories of a Freely Released Payload Near Earth";
         var mkdocs_page_input_path = "1 Physics/2 Gravity/Problem_3.md";
         var mkdocs_page_url = null;
       </script>
@@ -58,8 +58,38 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Escape Velocities and Cosmic Velocities</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 3</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 3: Trajectories of a Freely Released Payload Near Earth</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#1-fundamental-physics-and-governing-principles">1. Fundamental Physics and Governing Principles</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#newtons-law-of-universal-gravitation">Newton’s Law of Universal Gravitation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#conservation-of-energy-and-trajectory-classification">Conservation of Energy and Trajectory Classification</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#escape-velocity">Escape Velocity</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-trajectory-scenarios-and-their-characteristics">2. Trajectory Scenarios and Their Characteristics</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#a-elliptical-trajectory-orbital-insertion">A. Elliptical Trajectory (Orbital Insertion)</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#b-parabolic-trajectory-escape-condition">B. Parabolic Trajectory (Escape Condition)</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#c-hyperbolic-trajectory-escape-with-excess-energy">C. Hyperbolic Trajectory (Escape with Excess Energy)</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#d-suborbital-or-ballistic-trajectory">D. Suborbital or Ballistic Trajectory</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-numerical-analysis-approach">3. Numerical Analysis Approach</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-practical-interpretation-for-space-missions">4. Practical Interpretation for Space Missions</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#5-summary-and-conclusions">5. Summary and Conclusions</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -163,7 +193,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">2 Gravity</li>
-<li class="breadcrumb-item active">Problem 3</li>
+<li class="breadcrumb-item active">Problem 3: Trajectories of a Freely Released Payload Near Earth</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,7 +201,115 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-3">Problem 3</h1>
+<h1 id="problem-3-trajectories-of-a-freely-released-payload-near-earth">Problem 3: Trajectories of a Freely Released Payload Near Earth</h1>
+<h2 id="introduction">Introduction</h2>
+<p>When a payload is released from a rocket near Earth, its subsequent path through space depends critically on its initial position, velocity, and the gravitational pull exerted by Earth. This problem sits at the intersection of classical mechanics and orbital dynamics, presenting a real-world scenario crucial for space mission planning, such as satellite deployment, payload retrieval, or spacecraft return.</p>
+<p>Understanding the nature of these trajectories is essential for controlling payload behavior—whether to achieve stable orbit, enable safe reentry, or execute escape trajectories.</p>
+<hr/>
+<h2 id="1-fundamental-physics-and-governing-principles">1. Fundamental Physics and Governing Principles</h2>
+<h3 id="newtons-law-of-universal-gravitation">Newton’s Law of Universal Gravitation</h3>
+<p>The dominant force acting on the payload is Earth’s gravitational attraction, described by:</p>
+<div class="arithmatex">\[
+\mathbf{F} = - \frac{GMm}{r^{2}} \hat{\mathbf{r}}
+\]</div>
+<p>where</p>
+<ul>
+<li><span class="arithmatex">\(G\)</span> is the gravitational constant,</li>
+<li><span class="arithmatex">\(M\)</span> is Earth’s mass,</li>
+<li><span class="arithmatex">\(m\)</span> is the payload’s mass,</li>
+<li><span class="arithmatex">\(r\)</span> is the distance from Earth’s center to the payload,</li>
+<li><span class="arithmatex">\(\hat{\mathbf{r}}\)</span> is the unit vector pointing from Earth to payload.</li>
+</ul>
+<p>Since <span class="arithmatex">\(m\)</span> cancels out in the acceleration equation, the payload’s acceleration is:</p>
+<div class="arithmatex">\[
+\mathbf{a} = - \frac{GM}{r^{3}} \mathbf{r}
+\]</div>
+<p>This acceleration vector always points toward Earth’s center, creating a central force problem.</p>
+<h3 id="conservation-of-energy-and-trajectory-classification">Conservation of Energy and Trajectory Classification</h3>
+<p>The total mechanical energy per unit mass (specific energy) of the payload in Earth’s gravitational field is:</p>
+<div class="arithmatex">\[
+E = \frac{v^{2}}{2} - \frac{GM}{r}
+\]</div>
+<ul>
+<li><strong>Kinetic energy term:</strong> <span class="arithmatex">\(\frac{v^{2}}{2}\)</span></li>
+<li><strong>Potential energy term:</strong> <span class="arithmatex">\(-\frac{GM}{r}\)</span></li>
+</ul>
+<p>The sign and magnitude of <span class="arithmatex">\(E\)</span> determine the trajectory shape:</p>
+<ul>
+<li><span class="arithmatex">\(E &lt; 0\)</span> → Bound orbit → Elliptical trajectory</li>
+<li><span class="arithmatex">\(E = 0\)</span> → Marginal escape → Parabolic trajectory</li>
+<li><span class="arithmatex">\(E &gt; 0\)</span> → Unbound trajectory → Hyperbolic trajectory</li>
+</ul>
+<h3 id="escape-velocity">Escape Velocity</h3>
+<p>Escape velocity at radius <span class="arithmatex">\(r\)</span> is the minimum speed needed to overcome Earth’s gravity without further propulsion:</p>
+<div class="arithmatex">\[
+v_{\text{esc}} = \sqrt{\frac{2GM}{r}}
+\]</div>
+<p>If the payload is released with <span class="arithmatex">\(v &lt; v_{\text{esc}}\)</span>, it remains gravitationally bound; if <span class="arithmatex">\(v \geq v_{\text{esc}}\)</span>, it escapes Earth’s gravity.</p>
+<hr/>
+<h2 id="2-trajectory-scenarios-and-their-characteristics">2. Trajectory Scenarios and Their Characteristics</h2>
+<h3 id="a-elliptical-trajectory-orbital-insertion">A. Elliptical Trajectory (Orbital Insertion)</h3>
+<p>Occurs when the payload is released with a velocity less than escape velocity but sufficient to counteract gravitational fall.</p>
+<p>The orbit is an ellipse with Earth at one focus.</p>
+<p>Special case: circular orbit if the velocity vector is perpendicular to position and has the exact circular orbital speed</p>
+<div class="arithmatex">\[
+v_{c} = \sqrt{\frac{GM}{r}}
+\]</div>
+<p>This corresponds to most satellite launches: payloads are released to maintain a stable orbit around Earth.</p>
+<p>Payload can orbit indefinitely if not perturbed.</p>
+<h3 id="b-parabolic-trajectory-escape-condition">B. Parabolic Trajectory (Escape Condition)</h3>
+<p>The payload has exactly escape velocity.</p>
+<p>The trajectory is open, non-repeating, and marginally escapes Earth’s gravity.</p>
+<p>Velocity decreases to zero at infinite distance, so the payload just escapes with no extra kinetic energy.</p>
+<p>This case is idealized and rare because exact escape velocity is difficult to achieve in practice.</p>
+<h3 id="c-hyperbolic-trajectory-escape-with-excess-energy">C. Hyperbolic Trajectory (Escape with Excess Energy)</h3>
+<p>Velocity exceeds escape velocity.</p>
+<p>Payload follows a hyperbolic path, leaving Earth’s gravitational sphere with non-zero velocity at infinity.</p>
+<p>Typical for spacecraft sent to other planets or deep space missions.</p>
+<p>Requires additional energy or propulsion beyond that for orbit insertion.</p>
+<h3 id="d-suborbital-or-ballistic-trajectory">D. Suborbital or Ballistic Trajectory</h3>
+<p>Payload is released with velocity less than needed for orbit.</p>
+<p>Follows a curved path determined by initial velocity and gravity.</p>
+<p>Payload eventually falls back to Earth, potentially burning up during reentry or landing.</p>
+<p>Important for understanding reentry trajectories and ballistic missiles.</p>
+<hr/>
+<h2 id="3-numerical-analysis-approach">3. Numerical Analysis Approach</h2>
+<p>The motion equation:</p>
+<div class="arithmatex">\[
+\frac{d^{2} \mathbf{r}}{dt^{2}} = - \frac{GM}{r^{3}} \mathbf{r}
+\]</div>
+<p>is a nonlinear second-order differential equation, typically solved numerically due to the complexity of closed-form solutions for arbitrary initial conditions.</p>
+<p><strong>Numerical Procedure:</strong></p>
+<ul>
+<li>Define initial position vector <span class="arithmatex">\(\mathbf{r}_0\)</span> and velocity vector <span class="arithmatex">\(\mathbf{v}_0\)</span>.</li>
+<li>Use numerical integration methods (e.g., Runge-Kutta, Euler, or built-in ODE solvers) to evolve the system over time.</li>
+<li>At each time step, update position and velocity by applying gravitational acceleration.</li>
+<li>Record trajectory points for visualization and further analysis.</li>
+</ul>
+<p>This simulation reveals how varying initial conditions influence orbit type and path.</p>
+<hr/>
+<h2 id="4-practical-interpretation-for-space-missions">4. Practical Interpretation for Space Missions</h2>
+<ul>
+<li>
+<p><strong>Orbital Insertion:</strong><br/>
+  Rockets deliver payloads to specific velocities and altitudes that enable stable orbits. Understanding elliptical orbits ensures payloads remain in designated orbits for communication, observation, or other purposes.</p>
+</li>
+<li>
+<p><strong>Reentry Scenarios:</strong><br/>
+  Payloads failing to reach orbital velocity or deliberately slowed down follow suborbital trajectories leading to reentry and Earth impact. Safe trajectory design is critical for manned spacecraft and sample returns.</p>
+</li>
+<li>
+<p><strong>Escape Trajectories:</strong><br/>
+  For interplanetary missions, spacecraft must exceed escape velocity at Earth orbit to enter transfer orbits to other celestial bodies. Accurate calculation prevents mission failure due to insufficient velocity.</p>
+</li>
+</ul>
+<hr/>
+<h2 id="5-summary-and-conclusions">5. Summary and Conclusions</h2>
+<p>Payload trajectories near Earth are governed primarily by gravitational forces and initial conditions.</p>
+<p>Three main trajectory types emerge from energy considerations: elliptical (bound), parabolic (critical escape), and hyperbolic (escape with excess velocity).</p>
+<p>Numerical simulation enables precise prediction of payload paths, informing mission design.</p>
+<p>This analysis underpins critical aspects of satellite deployment, reentry planning, and interplanetary mission trajectories.</p>
+<p>Mastery of these concepts is essential for aerospace engineering, space science, and celestial mechanics.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
