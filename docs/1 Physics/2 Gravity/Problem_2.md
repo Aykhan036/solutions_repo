@@ -1,99 +1,68 @@
-# 🚀 Problem 2: Escape Velocities and Cosmic Velocities
+# Escape Velocities and Cosmic Velocities
 
-## Theoretical Background
+## Definitions and Physical Meaning
 
-**First Cosmic Velocity ($v_1$):**
+**First Cosmic Velocity (Orbital Velocity):**  
+This is the minimum horizontal velocity an object must have near the surface of a celestial body to move in a stable circular orbit around it, without falling back due to gravity. It balances gravitational pull and centripetal force.
 
-$$
-v_1 = \sqrt{ \frac{G M}{r} }
-$$
+**Second Cosmic Velocity (Escape Velocity):**  
+The minimum velocity required for an object to completely escape the gravitational field of a celestial body, i.e., to move infinitely far away with zero residual speed, without any further propulsion.
 
-**Second Cosmic Velocity ($v_2$):**
+**Third Cosmic Velocity (Solar System Escape Velocity):**  
+The velocity necessary for an object to escape the gravitational influence of the central star (e.g., the Sun) from the orbit of a planet, thus leaving the entire star system.
 
-$$
-v_2 = \sqrt{2} \cdot v_1 = \sqrt{ \frac{2 G M}{r} }
-$$
+## Mathematical Derivations
 
-**Third Cosmic Velocity ($v_3$):**
-
-$$
-v_{\text{orbit}} = \sqrt{ \frac{G M_{\odot}}{r_{\text{orbit}}} }
-$$
+First Cosmic Velocity is derived by equating gravitational force to centripetal force:
 
 $$
-v_3 = \sqrt{ v_2^2 + v_{\text{orbit}}^2 }
+\frac{GMm}{R^2} = \frac{mv_1^2}{R} \implies v_1 = \sqrt{\frac{GM}{R}}
 $$
 
-Where:
+Second Cosmic Velocity comes from energy conservation. The kinetic energy needed to overcome gravitational potential energy:
 
-- $G$: Gravitational constant.
-- $M$: Mass of the planet.
-- $r$: Radius of the planet.
-- $M_{\odot}$: Mass of the Sun.
-- $r_{\text{orbit}}$: Distance of the planet's orbit around the Sun.
+$$
+\frac{1}{2} m v_2^2 = \frac{GMm}{R} \implies v_2 = \sqrt{\frac{2GM}{R}} = \sqrt{2} \times v_1
+$$
 
----
+Third Cosmic Velocity requires combining the escape velocity from the planet and the orbital velocity of the planet around the Sun:
 
-## Python Simulation
+$$
+v_3 = \sqrt{v_2^2 + v_{\text{orbit}}^2}
+$$
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
+Here, $v_{\text{orbit}}$ is the planet’s orbital velocity around the Sun, calculated by:
 
-# Gravitational constant
-G = 6.67430e-11  # m^3 kg^-1 s^-2
-M_sun = 1.989e30  # kg (mass of the Sun)
+$$
+v_{\text{orbit}} = \sqrt{\frac{GM_\odot}{r}}
+$$
 
-# Celestial body data: Mass (kg), Radius (m), Orbit radius (m)
-bodies = {
-    'Earth':   [5.972e24, 6.371e6, 1.496e11],
-    'Mars':    [6.417e23, 3.3895e6, 2.279e11],
-    'Jupiter': [1.898e27, 6.9911e7, 7.785e11]
-}
+where $M_\odot$ is the Sun’s mass and $r$ is the orbital radius of the planet.
 
-names = []
-v1_list = []
-v2_list = []
-v3_list = []
+## Calculated Velocities for Earth, Mars, and Jupiter
 
-for name, (M, r, r_orbit) in bodies.items():
-    # First Cosmic Velocity (v₁)
-    v1 = np.sqrt(G * M / r)
-    
-    # Second Cosmic Velocity (v₂)
-    v2 = np.sqrt(2) * v1
-    
-    # Orbital velocity around the Sun
-    v_orbit = np.sqrt(G * M_sun / r_orbit)
-    
-    # Third Cosmic Velocity (v₃)
-    v3 = np.sqrt(v2**2 + v_orbit**2)
-    
-    # Store values (convert to km/s)
-    names.append(name)
-    v1_list.append(v1 / 1000)
-    v2_list.append(v2 / 1000)
-    v3_list.append(v3 / 1000)
+| Celestial Body | First Cosmic Velocity (km/s) | Second Cosmic Velocity (km/s) | Orbital Velocity Around Sun (km/s) | Third Cosmic Velocity (km/s) |
+|----------------|------------------------------|-------------------------------|------------------------------------|------------------------------|
+| Earth          | $\sim 7.9$                   | $\sim 11.2$                   | $\sim 29.8$                       | $\sim 16.7$                  |
+| Mars           | $\sim 5.0$                   | $\sim 5.0 \times \sqrt{2} \approx 7.1$ | $\sim 24.1$              | $\sim 25.5$                  |
+| Jupiter        | $\sim 13.1$                  | $\sim 18.5$                   | $\sim 13.1$                      | $\sim 22.8$                  |
 
-# Plotting
-x = np.arange(len(names))
-width = 0.25
+*Note: Third cosmic velocity values are approximate and depend on exact orbital distances.*
 
-plt.figure(figsize=(10, 6))
-plt.bar(x - width, v1_list, width, label='First Cosmic Velocity (v₁)')
-plt.bar(x, v2_list, width, label='Second Cosmic Velocity (v₂)')
-plt.bar(x + width, v3_list, width, label='Third Cosmic Velocity (v₃)')
+## Importance in Space Exploration
 
-plt.xticks(x, names)
-plt.ylabel('Velocity (km/s)')
-plt.title('Cosmic Velocities for Earth, Mars, and Jupiter')
-plt.legend()
-plt.grid(True, axis='y')
-plt.show()
+**First Cosmic Velocity:**  
+Essential for placing satellites in orbit around planets, enabling communication, navigation, and Earth observation technologies.
 
-```![](image-1.png)
-![alt text](image-2.png)
-![](image-3.png)
-![alt text](image-4.png)
-![alt text](image-5.png)
-[My colab code] (https://colab.research.google.com/drive/1vXPEEPSD0Y3ibrs5ezf4kH3yBB92C4Ow?usp=sharing)
+**Second Cosmic Velocity:**  
+Critical for launching spacecraft beyond planetary atmospheres into interplanetary space. It sets the baseline energy requirement for leaving a planet’s gravity.
+
+**Third Cosmic Velocity:**  
+Relevant for missions aimed at leaving the entire solar system (e.g., Voyager probes). Achieving this velocity is necessary for interstellar exploration.
+
+## Summary
+
+- Escape velocity concepts define energy thresholds for various mission types.
+- Knowing these velocities helps engineers design spacecraft propulsion systems and trajectory plans.
+- Different celestial bodies require different velocities due to varying mass and radius.
+- Visualizing these velocities shows how massive bodies like Jupiter require higher escape velocities than smaller ones like Mars.
