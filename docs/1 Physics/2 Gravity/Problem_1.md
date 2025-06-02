@@ -1,142 +1,144 @@
-# Kepler’s Third Law: Orbital Period and Radius
+# Problem 1: Orbital Period and Orbital Radius
 
-## 1. Deriving the Relationship (Kepler’s Third Law)
+## 🔹 Derivation of the Relationship
 
-Let’s consider a body (like a satellite or a moon) moving in a circular orbit around a planet.
+For a body in a circular orbit around a much more massive central body (like a planet orbiting the Sun), the force keeping it in orbit is gravity. This gravitational force also acts as the centripetal force required for circular motion.
 
-The gravitational force provides the centripetal force:
+The gravitational force between two objects is:
 
 $$
-F_\text{gravity} = F_\text{centripetal}
+F = \frac{G M m}{r^2}
 $$
+
+where:
+
+- $M$ is the mass of the central object  
+- $m$ is the mass of the orbiting object  
+- $r$ is the orbital radius  
+- $G$ is the gravitational constant  
+
+The centripetal force needed for circular motion is:
+
+$$
+F = \frac{m v^2}{r}
+$$
+
+Setting the two forces equal:
 
 $$
 \frac{G M m}{r^2} = \frac{m v^2}{r}
 $$
 
-Where:
-
-- $G$ is the gravitational constant  
-- $M$ is the mass of the central body (e.g. Earth)  
-- $m$ is the mass of the orbiting object  
-- $r$ is the orbital radius  
-- $v$ is the orbital velocity  
-
-Simplifying:
+Cancel $m$ and solve for $v$:
 
 $$
-\frac{G M}{r} = v^2
+v^2 = \frac{G M}{r}
 $$
 
-Now use the relation between velocity and orbital period $T$:
+The orbital period $T$ (time to complete one orbit) is related to velocity:
 
 $$
-v = \frac{2 \pi r}{T} \Rightarrow v^2 = \frac{4 \pi^2 r^2}{T^2}
+T = \frac{2\pi r}{v}
 $$
 
-Substitute this into the gravity equation:
+Substitute $v$:
 
 $$
-\frac{G M}{r} = \frac{4 \pi^2 r^2}{T^2}
+T = \frac{2\pi r}{\sqrt{\frac{G M}{r}}} = 2\pi \sqrt{\frac{r^3}{G M}}
 $$
 
-Now solve for $T^2$:
+Squaring both sides gives:
 
 $$
-T^2 = \frac{4 \pi^2 r^3}{G M}
+T^2 = \frac{4\pi^2}{G M} r^3
 $$
 
-✅ **Conclusion**:
+This is **Kepler’s Third Law**:
+
+> The square of the orbital period is directly proportional to the cube of the orbital radius.
+
+---
+
+## 🔹 Implications for Astronomy
+
+Kepler's Third Law is central to understanding how celestial bodies move. Key implications:
+
+- **Predict distances**: Knowing an object’s period lets us find how far it is from its star or planet.
+- **Determine masses**: Observing orbits allows calculation of the central body's mass.
+- **Design satellite orbits**: Engineers plan orbits using this law.
+- **Model planetary systems**: It maps orbits in both our solar system and exoplanetary systems.
+
+---
+
+## 🔹 Real-World Examples
+
+### 🌙 The Moon and Earth
+
+- Orbital period: ~27.3 days  
+- Orbital radius: ~384,400 km  
+- Kepler’s Law predicts this motion accurately, just like with artificial satellites.
+
+### ☉ Planets in the Solar System
+
+- Earth: $T = 1$ year, $r = 1$ AU  
+- So:
+
+$$
+\frac{T^2}{r^3} \approx 1 \quad \text{(when $T$ in years, $r$ in AU)}
+$$
+
+- Jupiter: $r \approx 5.2$ AU, $T \approx 11.86$ years — this fits the law too.
+
+### 📡 Artificial Satellites
+
+- Closer satellites (e.g., ISS): orbit in ~90 minutes  
+- Farther ones (e.g., GPS): orbit in ~12 hours  
+
+---
+
+## 🔹 Graphical Relationship
+
+If we graph:
+
+- $T^2$ (orbital period squared) on the vertical axis  
+- $r^3$ (orbital radius cubed) on the horizontal axis  
+
+The result is a straight line:
+
 $$
 T^2 \propto r^3
 $$
 
-This is **Kepler's Third Law** for circular orbits.
+This confirms Kepler’s Third Law visually and mathematically.
 
 ---
 
-## 2. Implications in Astronomy
+## 🔹 Extension to Elliptical Orbits
 
-- **Planetary Mass Estimation**: By measuring $T$ and $r$, we can solve for $M$, the mass of the central planet or star.  
-- **Distance Calculation**: If we know the orbital period, we can estimate the orbital radius and vice versa.  
-- **Satellite Orbits**: Engineers use this law to design satellite orbits for GPS, communications, and weather observation.
-
----
-
-## 3. Real-World Example – The Moon’s Orbit
-
-- Distance from Earth: $r \approx 3.84 \times 10^8 \, \text{m}$  
-- Earth's mass: $M = 5.972 \times 10^{24} \, \text{kg}$
-
-Using:
+Kepler’s Third Law also applies to elliptical orbits. In this case:
 
 $$
-T = 2 \pi \sqrt{\frac{r^3}{G M}} \Rightarrow T \approx 27.3 \, \text{days}
-$$
-
-Which matches the Moon’s actual orbital period.
-
----
-
-## 4. Simulation and Visualization (Summary)
-
-A Python script was used to:
-
-- Simulate circular orbits  
-- Plot $T^2$ versus $r^3$, showing a straight line (confirms Kepler's Law)  
-- Compute real orbital periods  
-
----
-
-## 5. Extension to Elliptical Orbits
-
-For elliptical orbits, replace $r$ with the **semi-major axis** $a$:
-
-$$
-T^2 = \frac{4 \pi^2 a^3}{G (M + m)}
+T^2 = \frac{4\pi^2 a^3}{G(M + m)}
 $$
 
 Where:
 
-- $M$ and $m$ are the masses of the two bodies
+- $a$ is the semi-major axis (average orbital distance)  
+- $M$ is the central mass  
+- $m$ is the orbiting mass (often negligible compared to $M$)  
 
-This version works for **binary stars**, **exoplanets**, and even **galactic orbits**.
-# Additional Visuals for Kepler's Third Law
+This general form explains:
 
-fig, axs = plt.subplots(2, 2, figsize=(12, 10))
+- Planets with elliptical orbits  
+- Comets with stretched orbits  
+- Binary star systems  
 
-import numpy as np
-import matplotlib.pyplot as plt
+---
 
-# Constants
-G = 6.67430e-11  # Gravitational constant (m^3 kg^-1 s^-2)
-M = 5.972e24     # Mass of the Earth (kg)
+## ✅ Summary
 
-# Orbital radii (m)
-radii = np.linspace(7e6, 4.2e7, 100)  # from ~7000 km to ~42000 km
-
-# Compute orbital periods using Kepler's 3rd Law for circular orbits
-T_squared = (4 * np.pi**2 * radii**3) / (G * M)
-r_cubed = radii**3
-
-# Plotting
-plt.figure(figsize=(10, 6))
-plt.plot(r_cubed, T_squared, label='Kepler’s Third Law')
-plt.title('$T^2$ vs $r^3$ (Kepler’s Third Law)')
-plt.xlabel('Orbital Radius Cubed $r^3$ (m³)')
-plt.ylabel('Orbital Period Squared $T^2$ (s²)')
-plt.grid(True)
-plt.legend()
-plt.tight_layout()
-plt.show()
-
-## 
-import numpy as np
-import matplotlib.pyplot as plt
-plt.suptitle("Visualizations Supporting Kepler's Third Law", fontsize=16)
-plt.tight_layout(rect=[0, 0, 1, 0.96])
-plt.show()
-
-
-![alt text](image.png)
-https://colab.research.google.com/drive/14qjrhSdrlgkpfu0Lel1x9ZVsAqHItlZg?usp=sharing
+- Kepler’s Third Law: $T^2 \propto r^3$
+- Helps us measure distances and masses in space.
+- Applies to natural and artificial satellites.
+- Valid for elliptical orbits using the semi-major axis.
+- Confirmed by observations of the Moon, planets, and satellites.
