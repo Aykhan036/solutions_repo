@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Problem 1: Interference Patterns on a Water Surface - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Problem 1: Interference Patterns on a Water Surface";
         var mkdocs_page_input_path = "1 Physics/3 Waves/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -64,8 +64,30 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">3 Waves</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1: Interference Patterns on a Water Surface</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#motivation">Motivation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#task-overview">Task Overview</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mathematical-background">Mathematical Background</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry-of-the-setup">Geometry of the Setup</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#interference-pattern-analysis">Interference Pattern Analysis</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#constructive-interference">Constructive Interference</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#destructive-interference">Destructive Interference</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#interference-zone-characteristics">Interference Zone Characteristics</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusions">Conclusions</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_1"></a>
+</li>
 </ul>
 </li>
 </ul>
@@ -163,7 +185,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">3 Waves</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Problem 1: Interference Patterns on a Water Surface</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,79 +193,66 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
-<h1 id="projectile-motion-range-as-a-function-of-the-angle-of-projection">Projectile Motion: Range as a Function of the Angle of Projection</h1>
-<h2 id="1-theoretical-foundation">1. Theoretical Foundation</h2>
-<p>We begin with the basic equations of motion for a projectile launched at angle <span class="arithmatex">\(\theta\)</span> with speed <span class="arithmatex">\(v_0\)</span>, assuming:</p>
-<ul>
-<li>No air resistance  </li>
-<li>Constant gravitational acceleration <span class="arithmatex">\(g\)</span> </li>
-<li>Launch height = 0  </li>
-</ul>
-<h3 id="decomposing-motion">Decomposing Motion</h3>
-<ul>
-<li>Horizontal velocity: <span class="arithmatex">\(v_{0x} = v_0 \cos\theta\)</span></li>
-<li>Vertical velocity: <span class="arithmatex">\(v_{0y} = v_0 \sin\theta\)</span></li>
-</ul>
-<p>Time of flight (<span class="arithmatex">\(T\)</span>) until it hits the ground:</p>
+<h1 id="problem-1-interference-patterns-on-a-water-surface">Problem 1: Interference Patterns on a Water Surface</h1>
+<h2 id="motivation">Motivation</h2>
+<p>Interference is a fundamental concept in wave physics, describing how two or more waves overlap and interact with each other. On a water surface, interference is visually striking: when ripples from different sources meet, they form patterns of alternating wave crests and troughs. These patterns demonstrate how wave amplitudes add together—either reinforcing each other (constructive interference) or canceling each other out (destructive interference).</p>
+<p>Studying such interactions helps us build intuition about key wave principles like coherence, phase difference, and spatial geometry. It also offers a real-world demonstration of superposition, a principle that applies not just to water waves, but also to sound, light, and quantum wave functions. This problem uses a regular geometric setup to explore how the arrangement of wave sources affects the resulting interference pattern.</p>
+<h2 id="task-overview">Task Overview</h2>
+<p>We analyze the interference pattern created on a water surface by placing wave-emitting point sources at the vertices of a regular polygon. Each source generates circular waves outward from its position. The total disturbance at any point on the water is determined by adding the contributions from all sources.</p>
+<h2 id="mathematical-background">Mathematical Background</h2>
+<p>The disturbance from a single point source is modeled by the following equation:</p>
 <div class="arithmatex">\[
-T = \frac{2v_0 \sin\theta}{g}
+\eta(x, y, t) = \frac{A}{r} \cos(kr - \omega t + \phi)
 \]</div>
-<p>Range <span class="arithmatex">\(R\)</span> is the horizontal distance traveled:</p>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(\eta(x, y, t)\)</span>: vertical displacement of the water at point <span class="arithmatex">\((x, y)\)</span> and time <span class="arithmatex">\(t\)</span></li>
+<li><span class="arithmatex">\(A\)</span>: amplitude of the wave</li>
+<li><span class="arithmatex">\(k = \frac{2\pi}{\lambda}\)</span>: wave number (dependent on the wavelength <span class="arithmatex">\(\lambda\)</span>)</li>
+<li><span class="arithmatex">\(\omega = 2\pi f\)</span>: angular frequency (dependent on the wave frequency <span class="arithmatex">\(f\)</span>)</li>
+<li><span class="arithmatex">\(r = \sqrt{(x - x_0)^2 + (y - y_0)^2}\)</span>: distance from the source point <span class="arithmatex">\((x_0, y_0)\)</span> to point <span class="arithmatex">\((x, y)\)</span></li>
+<li><span class="arithmatex">\(\phi\)</span>: initial phase (same for all sources in this case)</li>
+</ul>
+<p>For multiple sources, we apply the principle of superposition:</p>
 <div class="arithmatex">\[
-R = v_{0x} \cdot T = v_0 \cos\theta \cdot \frac{2v_0 \sin\theta}{g} = \frac{v_0^2 \sin(2\theta)}{g}
+\eta_{\text{sum}}(x, y, t) = \sum_{i=1}^{N} \eta_i(x, y, t)
 \]</div>
-<p>This is the governing equation for range as a function of angle.</p>
-<hr/>
-<h2 id="2-analysis-of-the-range">2. Analysis of the Range</h2>
-<h3 id="key-observations">Key Observations</h3>
+<p>Where <span class="arithmatex">\(N\)</span> is the number of wave sources (equal to the number of polygon vertices).</p>
+<h2 id="geometry-of-the-setup">Geometry of the Setup</h2>
+<p>For this analysis, we consider a regular polygon—meaning all sides and angles are equal. Some example configurations:</p>
 <ul>
-<li>Maximum range occurs at <span class="arithmatex">\(\theta = 45^\circ\)</span> since <span class="arithmatex">\(\sin(2\theta)\)</span> reaches its peak at <span class="arithmatex">\(\theta = 45^\circ\)</span></li>
-<li>Symmetry: <span class="arithmatex">\(R(\theta) = R(90^\circ - \theta)\)</span></li>
+<li>Equilateral Triangle (3 sides)</li>
+<li>Square (4 sides)</li>
+<li>Regular Pentagon (5 sides)</li>
 </ul>
-<h3 id="effect-of-parameters">Effect of Parameters</h3>
+<p>The sources are placed at equal distances from a central point, arranged in a circular formation. This symmetry makes the resulting interference patterns more structured and easier to analyze.</p>
+<h2 id="interference-pattern-analysis">Interference Pattern Analysis</h2>
+<h3 id="constructive-interference">Constructive Interference</h3>
+<p>This occurs when waves arrive in phase at the same location—meaning their crests align, resulting in a larger amplitude. In the case of symmetric polygonal arrangements, regions of constructive interference form where distances from the different sources are such that the path difference corresponds to whole-number multiples of the wavelength.</p>
+<h3 id="destructive-interference">Destructive Interference</h3>
+<p>This happens when waves arrive out of phase—where crests meet troughs—leading to cancellation. In symmetrical setups, nodes of destructive interference appear as a repeating grid or ring structure, depending on the polygon.</p>
+<h2 id="interference-zone-characteristics">Interference Zone Characteristics</h2>
 <ul>
-<li>Initial velocity <span class="arithmatex">\(v_0\)</span>: Range increases quadratically with <span class="arithmatex">\(v_0\)</span></li>
-<li>Gravity <span class="arithmatex">\(g\)</span>: Range is inversely proportional to <span class="arithmatex">\(g\)</span> (lower gravity = farther range)</li>
+<li>
+<p><strong>Triangle</strong>: The interference pattern forms threefold symmetry, with curved lines radiating outwards and intersecting in complex ways. Constructive nodes form along radial lines corresponding to the triangle’s axes.</p>
+</li>
+<li>
+<p><strong>Square</strong>: The pattern shows fourfold symmetry, with more regular, grid-like regions of constructive and destructive interference due to the right angles in the geometry.</p>
+</li>
+<li>
+<p><strong>Pentagon</strong>: The pattern becomes more intricate. Fivefold symmetry creates a star-like interference pattern in the center, with rings and nodes forming at complex intersections.</p>
+</li>
 </ul>
-<hr/>
-<h2 id="3-practical-applications">3. Practical Applications</h2>
-<p>This model can apply to:</p>
+<p>Each polygon creates a unique interference pattern based on its rotational symmetry. As the number of sources increases, the central interference structure becomes more detailed and sharply defined.</p>
+<h2 id="conclusions">Conclusions</h2>
+<p>The interference patterns generated by multiple point sources depend strongly on their spatial arrangement. Regular polygons offer a controlled way to observe the impact of geometry on wave behavior.</p>
 <ul>
-<li>Sports (e.g., soccer, basketball) – adjusting launch angles for maximum range  </li>
-<li>Engineering (e.g., missile trajectory, water jets)  </li>
-<li>Astrophysics – modeling orbits and interplanetary trajectories (with modifications)  </li>
+<li>Symmetry in the source layout leads to symmetry in interference patterns.</li>
+<li>Constructive and destructive interference regions form predictable geometrical shapes, particularly near the center of the polygon.</li>
+<li>These patterns can help in understanding more advanced concepts in physics, such as diffraction, wavefronts, and coherence.</li>
 </ul>
-<h3 id="beyond-ideal-model">Beyond Ideal Model</h3>
-<p>Real-world considerations:
-- Air resistance (drag)
-- Wind
-- Non-zero launch height
-- Uneven terrain</p>
-<p>These factors require numerical integration and more complex models.</p>
-<hr/>
-<h2 id="4-implementation-simulation-in-python">4. Implementation: Simulation in Python</h2>
-<p>```python
-import numpy as np
-import matplotlib.pyplot as plt</p>
-<p>def compute_range(v0, g, angles_deg):
-    angles_rad = np.radians(angles_deg)
-    return (v0**2 * np.sin(2 * angles_rad)) / g</p>
-<h1 id="parameters">Parameters</h1>
-<p>v0 = 50  # m/s
-g_values = [9.81, 3.71, 1.62]  # Earth, Mars, Moon
-angles = np.linspace(0, 90, 500)</p>
-<h1 id="plotting">Plotting</h1>
-<p>plt.figure(figsize=(10, 6))
-for g in g_values:
-    R = compute_range(v0, g, angles)
-    plt.plot(angles, R, label=f'g = {g} m/s²')</p>
-<p>plt.title('Range vs Angle of Projection')
-plt.xlabel('Angle (degrees)')
-plt.ylabel('Range (meters)')
-plt.legend()
-plt.grid(True)
-plt.show()</p>
+<p>This analysis reinforces the concept of superposition and highlights the beauty and complexity of wave interactions in two dimensions.</p>
+<h2 id="_1"></h2>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
