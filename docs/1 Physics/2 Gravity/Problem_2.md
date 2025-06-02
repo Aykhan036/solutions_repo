@@ -123,3 +123,19 @@ Achieving the third cosmic velocity is critical for future interstellar probes o
 - The **third cosmic velocity** is the speed required to escape the gravitational pull of the entire star system starting from the planet's surface.
 - These velocities depend primarily on the mass and radius of the planet, and for the third velocity, also on the planet’s orbital speed around its star.
 - Understanding these velocities is crucial for designing spacecraft trajectories, determining fuel needs, and planning missions ranging from satellites to interstellar probes.
+##
+
+![alt text](image-10.png)
+
+![alt text](image-11.png)
+
+![alt text](image-12.png)
+
+![alt text](image-13.png)
+
+![alt text](image-14.png)
+
+![alt text](image-15.png)
+
+## colab
+[Motivation](https://colab.research.google.com/drive/1Lm694Z2g4obZKouWKKqVpvfBitZwyGDv?usp=sharing)
