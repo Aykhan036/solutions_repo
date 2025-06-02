@@ -120,3 +120,13 @@ Simulations and visualizations reveal insights into this system’s behavior:
 ---
 
 This comprehensive investigation into the forced damped pendulum combines physics theory, system analysis, and real-world relevance, making it a cornerstone in the study of nonlinear and chaotic dynamics.
+```
+
+![alt text](image-12.png)
+
+![alt text](image-13.png)
+
+![alt text](image-14.png)
+
+## colab
+[Motivation](https://colab.research.google.com/drive/1tOsqqqLCLQMFXDHNqSEFWyfXFb0DowOj?usp=sharing)
