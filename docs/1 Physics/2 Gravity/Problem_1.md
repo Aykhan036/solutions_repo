@@ -142,3 +142,15 @@ This general form explains:
 - Applies to natural and artificial satellites.
 - Valid for elliptical orbits using the semi-major axis.
 - Confirmed by observations of the Moon, planets, and satellites.
+---
+
+![alt text](image-6.png)
+
+![alt text](image-7.png)
+
+![alt text](image-8.png)
+
+![alt text](image-9.png)
+
+## colab
+[Motivation](https://colab.research.google.com/drive/1OTi0Z9NLxY9Wy3mcVDjVYHTdeODk_6uS?usp=sharing)
