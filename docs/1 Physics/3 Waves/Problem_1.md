@@ -1,94 +1,77 @@
-# Problem 1
+# Problem 1: Interference Patterns on a Water Surface
 
-# Projectile Motion: Range as a Function of the Angle of Projection
+## Motivation
 
-## 1. Theoretical Foundation
+Interference is a fundamental concept in wave physics, describing how two or more waves overlap and interact with each other. On a water surface, interference is visually striking: when ripples from different sources meet, they form patterns of alternating wave crests and troughs. These patterns demonstrate how wave amplitudes add together—either reinforcing each other (constructive interference) or canceling each other out (destructive interference).
 
-We begin with the basic equations of motion for a projectile launched at angle $\theta$ with speed $v_0$, assuming:
+Studying such interactions helps us build intuition about key wave principles like coherence, phase difference, and spatial geometry. It also offers a real-world demonstration of superposition, a principle that applies not just to water waves, but also to sound, light, and quantum wave functions. This problem uses a regular geometric setup to explore how the arrangement of wave sources affects the resulting interference pattern.
 
-- No air resistance  
-- Constant gravitational acceleration $g$  
-- Launch height = 0  
+## Task Overview
 
-### Decomposing Motion
+We analyze the interference pattern created on a water surface by placing wave-emitting point sources at the vertices of a regular polygon. Each source generates circular waves outward from its position. The total disturbance at any point on the water is determined by adding the contributions from all sources.
 
-- Horizontal velocity: $v_{0x} = v_0 \cos\theta$
-- Vertical velocity: $v_{0y} = v_0 \sin\theta$
+## Mathematical Background
 
-Time of flight ($T$) until it hits the ground:
+The disturbance from a single point source is modeled by the following equation:
 
 $$
-T = \frac{2v_0 \sin\theta}{g}
+\eta(x, y, t) = \frac{A}{r} \cos(kr - \omega t + \phi)
 $$
 
-Range $R$ is the horizontal distance traveled:
+Where:
+
+- $\eta(x, y, t)$: vertical displacement of the water at point $(x, y)$ and time $t$
+- $A$: amplitude of the wave
+- $k = \frac{2\pi}{\lambda}$: wave number (dependent on the wavelength $\lambda$)
+- $\omega = 2\pi f$: angular frequency (dependent on the wave frequency $f$)
+- $r = \sqrt{(x - x_0)^2 + (y - y_0)^2}$: distance from the source point $(x_0, y_0)$ to point $(x, y)$
+- $\phi$: initial phase (same for all sources in this case)
+
+For multiple sources, we apply the principle of superposition:
 
 $$
-R = v_{0x} \cdot T = v_0 \cos\theta \cdot \frac{2v_0 \sin\theta}{g} = \frac{v_0^2 \sin(2\theta)}{g}
+\eta_{\text{sum}}(x, y, t) = \sum_{i=1}^{N} \eta_i(x, y, t)
 $$
 
-This is the governing equation for range as a function of angle.
+Where $N$ is the number of wave sources (equal to the number of polygon vertices).
 
----
+## Geometry of the Setup
 
-## 2. Analysis of the Range
+For this analysis, we consider a regular polygon—meaning all sides and angles are equal. Some example configurations:
 
-### Key Observations
+- Equilateral Triangle (3 sides)
+- Square (4 sides)
+- Regular Pentagon (5 sides)
 
-- Maximum range occurs at $\theta = 45^\circ$ since $\sin(2\theta)$ reaches its peak at $\theta = 45^\circ$
-- Symmetry: $R(\theta) = R(90^\circ - \theta)$
+The sources are placed at equal distances from a central point, arranged in a circular formation. This symmetry makes the resulting interference patterns more structured and easier to analyze.
 
-### Effect of Parameters
+## Interference Pattern Analysis
 
-- Initial velocity $v_0$: Range increases quadratically with $v_0$
-- Gravity $g$: Range is inversely proportional to $g$ (lower gravity = farther range)
+### Constructive Interference
 
----
+This occurs when waves arrive in phase at the same location—meaning their crests align, resulting in a larger amplitude. In the case of symmetric polygonal arrangements, regions of constructive interference form where distances from the different sources are such that the path difference corresponds to whole-number multiples of the wavelength.
 
-## 3. Practical Applications
+### Destructive Interference
 
-This model can apply to:
+This happens when waves arrive out of phase—where crests meet troughs—leading to cancellation. In symmetrical setups, nodes of destructive interference appear as a repeating grid or ring structure, depending on the polygon.
 
-- Sports (e.g., soccer, basketball) – adjusting launch angles for maximum range  
-- Engineering (e.g., missile trajectory, water jets)  
-- Astrophysics – modeling orbits and interplanetary trajectories (with modifications)  
+## Interference Zone Characteristics
 
-### Beyond Ideal Model
+- **Triangle**: The interference pattern forms threefold symmetry, with curved lines radiating outwards and intersecting in complex ways. Constructive nodes form along radial lines corresponding to the triangle’s axes.
 
-Real-world considerations:
-- Air resistance (drag)
-- Wind
-- Non-zero launch height
-- Uneven terrain
+- **Square**: The pattern shows fourfold symmetry, with more regular, grid-like regions of constructive and destructive interference due to the right angles in the geometry.
 
-These factors require numerical integration and more complex models.
+- **Pentagon**: The pattern becomes more intricate. Fivefold symmetry creates a star-like interference pattern in the center, with rings and nodes forming at complex intersections.
 
----
+Each polygon creates a unique interference pattern based on its rotational symmetry. As the number of sources increases, the central interference structure becomes more detailed and sharply defined.
 
-## 4. Implementation: Simulation in Python
+## Conclusions
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
+The interference patterns generated by multiple point sources depend strongly on their spatial arrangement. Regular polygons offer a controlled way to observe the impact of geometry on wave behavior.
 
-def compute_range(v0, g, angles_deg):
-    angles_rad = np.radians(angles_deg)
-    return (v0**2 * np.sin(2 * angles_rad)) / g
+- Symmetry in the source layout leads to symmetry in interference patterns.
+- Constructive and destructive interference regions form predictable geometrical shapes, particularly near the center of the polygon.
+- These patterns can help in understanding more advanced concepts in physics, such as diffraction, wavefronts, and coherence.
 
-# Parameters
-v0 = 50  # m/s
-g_values = [9.81, 3.71, 1.62]  # Earth, Mars, Moon
-angles = np.linspace(0, 90, 500)
-
-# Plotting
-plt.figure(figsize=(10, 6))
-for g in g_values:
-    R = compute_range(v0, g, angles)
-    plt.plot(angles, R, label=f'g = {g} m/s²')
-
-plt.title('Range vs Angle of Projection')
-plt.xlabel('Angle (degrees)')
-plt.ylabel('Range (meters)')
-plt.legend()
-plt.grid(True)
-plt.show()
+This analysis reinforces the concept of superposition and highlights the beauty and complexity of wave interactions in two dimensions.
+##
