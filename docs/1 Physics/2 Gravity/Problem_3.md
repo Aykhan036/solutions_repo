@@ -158,3 +158,17 @@ Numerical simulation enables precise prediction of payload paths, informing miss
 This analysis underpins critical aspects of satellite deployment, reentry planning, and interplanetary mission trajectories.
 
 Mastery of these concepts is essential for aerospace engineering, space science, and celestial mechanics.
+---
+
+![alt text](image-16.png)
+
+![alt text](image-17.png)
+
+![alt text](image-18.png)
+
+![alt text](image-19.png)
+
+![alt text](image-20.png)
+
+## colab
+[Motivation](https://colab.research.google.com/drive/1PIXCZK6SeqQzOO4gqEywM38Qw0a6MBW6?usp=sharing)
