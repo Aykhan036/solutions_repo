@@ -84,7 +84,7 @@ This analysis reinforces the concept of superposition and highlights the beauty 
 
 ![alt text](image-4.png)
 
-![alt text](image-5.png)
+![alt text](<gift colab.gif>)
 
 ## colab
 [Motivation](https://colab.research.google.com/drive/1W-UQg7wMOoTuRYsBlRbAwQ4T-nma1wKY?usp=sharing)
