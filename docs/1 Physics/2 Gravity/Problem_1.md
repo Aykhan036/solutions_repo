@@ -153,4 +153,4 @@ This general form explains:
 ![alt text](image-9.png)
 
 ## colab
-[Motivation](https://colab.research.google.com/drive/1OTi0Z9NLxY9Wy3mcVDjVYHTdeODk_6uS?usp=sharing)
+[Motivation](https://colab.research.google.com/drive/1BlN1w-ITT7BROrA74PGpknPTVMVHuLVh?usp=sharing)
