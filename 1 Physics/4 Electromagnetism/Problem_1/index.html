@@ -172,6 +172,114 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="simulating-the-effects-of-the-lorentz-force">Simulating the Effects of the Lorentz Force</h1>
+<h2 id="1-exploration-of-applications">1. Exploration of Applications</h2>
+<p>The Lorentz force, given by<br/>
+$$
+\vec{F} = q\vec{E} + q(\vec{v} \times \vec{B})
+$$<br/>
+plays a central role in the dynamics of charged particles in electromagnetic fields. This force is foundational in various physical and technological systems:</p>
+<ul>
+<li>
+<p><strong>Particle Accelerators</strong>: Charged particles are accelerated and steered using electric and magnetic fields, relying on the Lorentz force to control beam paths.</p>
+</li>
+<li>
+<p><strong>Mass Spectrometers</strong>: Particles are deflected by magnetic fields in a manner dependent on their charge-to-mass ratio, allowing identification of isotopes and elements.</p>
+</li>
+<li>
+<p><strong>Plasma Confinement (e.g., Tokamaks)</strong>: Magnetic fields are used to confine high-energy plasma, preventing contact with containment walls and sustaining fusion reactions.</p>
+</li>
+<li>
+<p><strong>Cathode Ray Tubes and Electron Microscopes</strong>: Manipulate electron beams with electromagnetic fields for display or imaging purposes.</p>
+</li>
+<li>
+<p><strong>Auroras and Cosmic Ray Deflection</strong>: Earth's magnetic field influences charged particles from space, a natural demonstration of the Lorentz force.</p>
+</li>
+</ul>
+<p>In each case, electric fields (<span class="arithmatex">\(\vec{E}\)</span>) are used primarily for accelerating particles, while magnetic fields (<span class="arithmatex">\(\vec{B}\)</span>) are used for guiding or confining their motion.</p>
+<hr/>
+<h2 id="2-simulating-particle-motion">2. Simulating Particle Motion</h2>
+<p>We numerically solve the motion of a charged particle using the Lorentz force law in the following scenarios:</p>
+<h3 id="a-uniform-magnetic-field-b-only">a. Uniform Magnetic Field (B only)</h3>
+<p>With no electric field, and an initial velocity perpendicular to <span class="arithmatex">\(\vec{B}\)</span>, the particle undergoes <strong>circular motion</strong> in the plane perpendicular to <span class="arithmatex">\(\vec{B}\)</span> due to the magnetic force acting as a centripetal force.</p>
+<h3 id="b-combined-uniform-electric-and-magnetic-fields">b. Combined Uniform Electric and Magnetic Fields</h3>
+<p>When both <span class="arithmatex">\(\vec{E}\)</span> and <span class="arithmatex">\(\vec{B}\)</span> are present, the trajectory depends on their relative orientation:</p>
+<ul>
+<li><strong>Helical motion</strong> if <span class="arithmatex">\(\vec{v}\)</span> has components both parallel and perpendicular to <span class="arithmatex">\(\vec{B}\)</span>.</li>
+<li><strong>Spiral acceleration</strong> when <span class="arithmatex">\(\vec{E}\)</span> is not perpendicular to <span class="arithmatex">\(\vec{B}\)</span>.</li>
+<li><strong>Cycloidal or drifting motion</strong> depending on field orientations.</li>
+</ul>
+<h3 id="c-crossed-fields-vece-perp-vecb">c. Crossed Fields (<span class="arithmatex">\(\vec{E} \perp \vec{B}\)</span>)</h3>
+<p>Produces a constant drift velocity:
+$$
+\vec{v}_{\text{drift}} = \frac{\vec{E} \times \vec{B}}{B^2}
+$$</p>
+<p>The motion becomes a <strong>cycloidal path</strong>: a combination of circular motion (due to <span class="arithmatex">\(\vec{B}\)</span>) and linear drift (due to <span class="arithmatex">\(\vec{E} \times \vec{B}\)</span>).</p>
+<hr/>
+<h2 id="3-parameter-exploration">3. Parameter Exploration</h2>
+<p>Various physical parameters significantly affect the particle’s motion:</p>
+<ul>
+<li><strong>Field Strengths</strong> (<span class="arithmatex">\(\vec{E}\)</span>, <span class="arithmatex">\(\vec{B}\)</span>):</li>
+<li>Stronger <span class="arithmatex">\(\vec{B}\)</span> results in tighter circular paths (smaller Larmor radius).</li>
+<li>
+<p>Stronger <span class="arithmatex">\(\vec{E}\)</span> increases acceleration or drift speed.</p>
+</li>
+<li>
+<p><strong>Initial Velocity</strong> (<span class="arithmatex">\(\vec{v}\)</span>):</p>
+</li>
+<li>
+<p>Determines whether motion is circular (<span class="arithmatex">\(\vec{v} \perp \vec{B}\)</span>), helical, or more complex.</p>
+</li>
+<li>
+<p><strong>Charge (<span class="arithmatex">\(q\)</span>) and Mass (<span class="arithmatex">\(m\)</span>)</strong>:</p>
+</li>
+<li>The <strong>Larmor radius</strong>:
+    $$
+    r_L = \frac{mv_\perp}{|q|B}
+    $$</li>
+<li>The <strong>cyclotron frequency</strong>:
+    $$
+    \omega_c = \frac{|q|B}{m}
+    $$</li>
+<li>Heavier or lower-charge particles have wider paths and slower rotations.</li>
+</ul>
+<hr/>
+<h2 id="4-visualization">4. Visualization</h2>
+<p>Visual representations were created for different scenarios:</p>
+<ul>
+<li><strong>2D and 3D Plots</strong>: Show particle trajectories in response to field configurations.</li>
+<li><strong>Circular Orbits</strong>: Seen in uniform <span class="arithmatex">\(\vec{B}\)</span> fields with <span class="arithmatex">\(\vec{v} \perp \vec{B}\)</span>.</li>
+<li><strong>Helical Paths</strong>: When particle has a velocity component along <span class="arithmatex">\(\vec{B}\)</span>.</li>
+<li><strong>Drift Motion</strong>: Occurs in crossed fields; particle moves uniformly in <span class="arithmatex">\(\vec{E} \times \vec{B}\)</span> direction.</li>
+</ul>
+<p>These plots illustrate important physical quantities:</p>
+<ul>
+<li><strong>Larmor Radius</strong>: Radius of circular motion in a magnetic field.</li>
+<li><strong>Drift Velocity</strong>: Net motion in crossed fields, independent of mass or charge sign.</li>
+</ul>
+<hr/>
+<h2 id="5-discussion-and-real-world-relevance">5. Discussion and Real-World Relevance</h2>
+<p>This simulation illustrates foundational behavior seen in:</p>
+<ul>
+<li><strong>Cyclotrons</strong>: Use circular motion in magnetic fields to accelerate particles.</li>
+<li><strong>Magnetic Bottles and Traps</strong>: Rely on helical and mirror motion to confine plasmas.</li>
+<li><strong>Fusion Reactors</strong>: Use magnetic fields to sustain and control high-energy plasmas.</li>
+<li><strong>Space Physics</strong>: Helical motion and drifts explain particle behavior in Earth’s magnetosphere.</li>
+</ul>
+<hr/>
+<h2 id="6-suggestions-for-extension">6. Suggestions for Extension</h2>
+<p>To further enhance realism and complexity:</p>
+<ul>
+<li>Introduce <strong>non-uniform fields</strong> (spatially varying <span class="arithmatex">\(\vec{E}\)</span> and <span class="arithmatex">\(\vec{B}\)</span>).</li>
+<li>Model <strong>collisions or radiation losses</strong> in plasma simulations.</li>
+<li>Include <strong>relativistic effects</strong> for high-velocity particles.</li>
+<li>Simulate <strong>multi-particle systems</strong> to study collective effects in plasmas.</li>
+<li>Use <strong>higher-order solvers</strong> (e.g., Runge-Kutta) for improved accuracy.</li>
+</ul>
+<hr/>
+<p><img alt="alt text" src="../image-1.png"/></p>
+<h2 id="colab">colab</h2>
+<p><a href="https://colab.research.google.com/drive/1VIkI_qdn8nmNsVVBbYGZmh1jqoGBs9hY?usp=sharing">Motivation</a></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
