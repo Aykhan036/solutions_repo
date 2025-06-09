@@ -173,4 +173,4 @@ Mastery of these concepts is essential for aerospace engineering, space science,
 ![alt text](image-26.png)
 
 ## colab
-[Motivation](https://colab.research.google.com/drive/1PIXCZK6SeqQzOO4gqEywM38Qw0a6MBW6?usp=sharing)
+[Motivation](https://colab.research.google.com/drive/17RENioy_7uZ2GNDuwRAkWpyJE3ojwgkE?usp=sharing)
