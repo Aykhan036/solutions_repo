@@ -113,4 +113,15 @@ C —[5Ω]— D
 
 - After applying the above steps, you end up with a **single edge** between your two main terminals.
 - The resistance of that final edge is the **equivalent resistance** of the entire circuit.
+###
 
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+![alt text](image-3.png)
+
+![alt text](image-4.png)
+
+## colab
+[Motivation](https://colab.research.google.com/drive/1kGR_KWE0JLJ-Oacz4TAdtCWGzHyVQOJk?usp=sharing)
