@@ -172,6 +172,120 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="exploring-the-central-limit-theorem-through-simulations">Exploring the Central Limit Theorem through Simulations</h1>
+<h2 id="1-simulating-sampling-distributions">1. Simulating Sampling Distributions</h2>
+<p>We start with three different types of populations:</p>
+<ul>
+<li>
+<p><strong>Uniform Distribution</strong>: All values equally likely between <span class="arithmatex">\(0\)</span> and <span class="arithmatex">\(1\)</span>.</p>
+</li>
+<li>
+<p><strong>Exponential Distribution</strong>: Values are mostly small but can be large (right-skewed).</p>
+</li>
+<li>
+<p><strong>Binomial Distribution</strong>: Values are discrete, based on repeated yes/no trials.</p>
+</li>
+</ul>
+<p>For each population type, imagine we have a very large dataset (e.g., <span class="arithmatex">\(100,000\)</span> values). This large dataset represents the “entire population.”</p>
+<h2 id="2-sampling-and-visualization">2. Sampling and Visualization</h2>
+<p>We take random samples from each population for different sample sizes:<br/>
+<span class="arithmatex">\(5\)</span>, <span class="arithmatex">\(10\)</span>, <span class="arithmatex">\(30\)</span>, and <span class="arithmatex">\(50\)</span>.</p>
+<p>For each sample size:</p>
+<ul>
+<li>
+<p>We take <span class="arithmatex">\(1,000\)</span> random samples, each of the given size.</p>
+</li>
+<li>
+<p>We calculate the mean of each sample.</p>
+</li>
+</ul>
+<p>These <span class="arithmatex">\(1,000\)</span> sample means form a sampling distribution for that sample size.</p>
+<p>We visualize the sampling distribution with a histogram.</p>
+<h3 id="what-we-observe">What We Observe:</h3>
+<ul>
+<li>
+<p>For small sample sizes (like <span class="arithmatex">\(5\)</span>):<br/>
+  The sampling distribution still looks like the original population.</p>
+</li>
+<li>
+<p>As the sample size increases (<span class="arithmatex">\(30\)</span> or <span class="arithmatex">\(50\)</span>):<br/>
+  The sampling distribution becomes more bell-shaped, smoother, and more normal.</p>
+</li>
+</ul>
+<p>This happens no matter what the original population looked like.</p>
+<h2 id="3-parameter-exploration">3. Parameter Exploration</h2>
+<h3 id="a-effect-of-the-original-distribution">A. Effect of the Original Distribution:</h3>
+<ul>
+<li>
+<p><strong>Uniform:</strong> Smooths out quickly into a normal shape.</p>
+</li>
+<li>
+<p><strong>Exponential:</strong> Starts skewed, needs larger sample sizes to look normal.</p>
+</li>
+<li>
+<p><strong>Binomial:</strong> Becomes bell-shaped when sample size increases.</p>
+</li>
+</ul>
+<h3 id="b-effect-of-sample-size">B. Effect of Sample Size:</h3>
+<p>Larger samples lead to:</p>
+<ul>
+<li>
+<p>Sampling distributions that are more normal in shape.</p>
+</li>
+<li>
+<p>Less spread in sample means (they are more tightly clustered).</p>
+</li>
+</ul>
+<h3 id="c-effect-of-population-variance">C. Effect of Population Variance:</h3>
+<p>Populations with high variance produce sampling distributions that are wider.</p>
+<p>But still: with large samples, the center becomes normally shaped.</p>
+<h2 id="4-practical-applications-of-the-central-limit-theorem">4. Practical Applications of the Central Limit Theorem</h2>
+<ul>
+<li>✅ <strong>Estimating Population Parameters:</strong><br/>
+  The average of a sample can be used to estimate the true population mean, <span class="arithmatex">\(\mu\)</span>.</li>
+</ul>
+<p>Thanks to CLT, we can also estimate how much error is likely, often measured by the standard error:<br/>
+  $$ SE = \frac{\sigma}{\sqrt{n}} $$<br/>
+  where <span class="arithmatex">\(\sigma\)</span> is the population standard deviation and <span class="arithmatex">\(n\)</span> is the sample size.</p>
+<ul>
+<li>
+<p>✅ <strong>Quality Control in Manufacturing:</strong><br/>
+  Factories take random samples of products.<br/>
+  The average measurement (e.g., length, weight) is used to decide if the process is working correctly.<br/>
+  If the sample mean goes too far from normal, it signals a problem.</p>
+</li>
+<li>
+<p>✅ <strong>Financial Predictions:</strong><br/>
+  CLT allows financial analysts to assume that average returns are normally distributed.<br/>
+  This is key to models for risk, portfolio design, and decision making.</p>
+</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>The Central Limit Theorem shows that, as sample size increases:</p>
+<ul>
+<li>
+<p>The distribution of the sample mean becomes approximately normal.</p>
+</li>
+<li>
+<p>This is true regardless of the original population's shape.</p>
+</li>
+</ul>
+<p>This fundamental idea supports many real-world methods in statistics, engineering, finance, and science.</p>
+<h3 id="_1"></h3>
+<p><img alt="alt text" src="../image.png"/></p>
+<p><img alt="alt text" src="../image-1.png"/></p>
+<p><img alt="alt text" src="../image-2.png"/></p>
+<p><img alt="alt text" src="../image-3.png"/></p>
+<p><img alt="alt text" src="../image-4.png"/></p>
+<p><img alt="alt text" src="../image-5.png"/></p>
+<p><img alt="alt text" src="../image-6.png"/></p>
+<p><img alt="alt text" src="../image-7.png"/></p>
+<p><img alt="alt text" src="../image-8.png"/></p>
+<p><img alt="alt text" src="../image-9.png"/></p>
+<p><img alt="alt text" src="../image-10.png"/></p>
+<p><img alt="alt text" src="../image-11.png"/></p>
+<h2 id="colab">colab</h2>
+<p><a href="https://colab.research.google.com/drive/1wZHFNugAejeDTWVJ2jCXaBoaiA7BuwzQ?usp=sharing">Motivation</a></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
