@@ -172,6 +172,124 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="equivalent-resistance-using-graph-theory-step-by-step-explanation">Equivalent Resistance Using Graph Theory – Step-by-Step Explanation</h1>
+<h2 id="1-model-the-circuit-as-a-graph">1. Model the Circuit as a Graph</h2>
+<ul>
+<li>Each <strong>junction</strong> in the circuit becomes a <strong>node</strong>.</li>
+<li>Each <strong>resistor</strong> becomes an <strong>edge</strong> between two nodes.</li>
+<li>The <strong>resistance value</strong> becomes the <strong>weight</strong> of the edge.</li>
+<li>The graph is <strong>undirected</strong>, since current flows in both directions through a resistor.</li>
+</ul>
+<h2 id="2-identify-series-connections">2. Identify Series Connections</h2>
+<ul>
+<li>
+<p>A node (excluding the starting and ending terminals) that connects to <strong>exactly two</strong> other nodes is a <strong>series node</strong>.</p>
+</li>
+<li>
+<p>If three nodes are connected like:</p>
+</li>
+</ul>
+<p><code>A —[R₁]— B —[R₂]— C</code></p>
+<p>and node <span class="arithmatex">\(B\)</span> connects only to <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(C\)</span>, then resistors <span class="arithmatex">\(R_1\)</span> and <span class="arithmatex">\(R_2\)</span> are in <strong>series</strong>.</p>
+<ul>
+<li>Replace this part with a single resistor from <span class="arithmatex">\(A\)</span> to <span class="arithmatex">\(C\)</span> with total resistance:</li>
+</ul>
+<p>$$
+  R = R_1 + R_2
+  $$</p>
+<ul>
+<li>Remove node <span class="arithmatex">\(B\)</span> and its two edges. Add a new edge directly between <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(C\)</span> with resistance <span class="arithmatex">\(R\)</span>.</li>
+</ul>
+<h2 id="3-identify-parallel-connections">3. Identify Parallel Connections</h2>
+<ul>
+<li>
+<p>If two or more resistors connect the <strong>same pair of nodes</strong>, they are in <strong>parallel</strong>.</p>
+</li>
+<li>
+<p>For resistors <span class="arithmatex">\(R_1, R_2, \dots, R_n\)</span> between the same two nodes, calculate the total resistance using:</p>
+</li>
+</ul>
+<p>$$
+  \frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2} + \dots + \frac{1}{R_n}
+  $$</p>
+<ul>
+<li>Remove all parallel edges and replace them with <strong>one edge</strong> representing the <strong>equivalent resistance</strong>.</li>
+</ul>
+<h2 id="4-repeat-the-process">4. Repeat the Process</h2>
+<ul>
+<li>
+<p>After each series or parallel simplification, the structure of the graph changes.</p>
+</li>
+<li>
+<p>Repeat the checks:</p>
+</li>
+<li>
+<p>Are there new series nodes?</p>
+</li>
+<li>
+<p>Are there new parallel edges?</p>
+</li>
+<li>
+<p>Keep simplifying until you're left with just <strong>two nodes</strong>: the starting node and the ending node (the ones across which you want the equivalent resistance).</p>
+</li>
+<li>
+<p>The remaining resistor between these two nodes is the <strong>equivalent resistance</strong>.</p>
+</li>
+</ul>
+<h2 id="5-handling-complex-and-nested-circuits">5. Handling Complex and Nested Circuits</h2>
+<ul>
+<li><strong>Nested combinations</strong> (e.g., a series containing parallel branches, or vice versa) are handled the same way:</li>
+<li>
+<p>Simplify <strong>inner parts first</strong>, then continue outward.</p>
+</li>
+<li>
+<p>Always look for the <strong>smallest series or parallel patterns</strong>, reduce them, and repeat.</p>
+</li>
+<li>
+<p>In <strong>cyclic graphs</strong> (loops), simplifications expose more series or parallel connections step by step.</p>
+</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h3 id="simple-series">Simple Series</h3>
+<pre><code>A —[5Ω]— B —[10Ω]— C
+</code></pre>
+<ul>
+<li>Combine to get:</li>
+</ul>
+<p><code>A —[15Ω]— C</code></p>
+<p>$$
+  R = 5\,\Omega + 10\,\Omega = 15\,\Omega
+  $$</p>
+<h3 id="simple-parallel">Simple Parallel</h3>
+<ul>
+<li>Two resistors of <span class="arithmatex">\(10\,\Omega\)</span> and <span class="arithmatex">\(20\,\Omega\)</span> between <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span>:</li>
+</ul>
+<p>$$
+  \frac{1}{R} = \frac{1}{10} + \frac{1}{20} = \frac{3}{20} \Rightarrow R = \frac{20}{3} \approx 6.67\,\Omega
+  $$</p>
+<h3 id="nested-example">Nested Example</h3>
+<pre><code>A —[10Ω]— B
+B —[20Ω]— C
+B —[10Ω]— C
+C —[5Ω]— D
+</code></pre>
+<ul>
+<li>First combine <span class="arithmatex">\(B \to C\)</span> in parallel:</li>
+</ul>
+<p>$$
+  \frac{1}{R_{BC}} = \frac{1}{20} + \frac{1}{10} = \frac{3}{20} \Rightarrow R_{BC} = \frac{20}{3} \approx 6.67\,\Omega
+  $$</p>
+<ul>
+<li>Then total path <span class="arithmatex">\(A \to B \to C \to D\)</span>:</li>
+</ul>
+<p>$$
+  R = 10 + \frac{20}{3} + 5 = \frac{95}{3} \approx 31.67\,\Omega
+  $$</p>
+<h2 id="final-result">Final Result</h2>
+<ul>
+<li>After applying the above steps, you end up with a <strong>single edge</strong> between your two main terminals.</li>
+<li>The resistance of that final edge is the <strong>equivalent resistance</strong> of the entire circuit.</li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
