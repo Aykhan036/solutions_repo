@@ -172,6 +172,139 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
+<h1 id="estimating-pi-using-monte-carlo-methods">Estimating <span class="arithmatex">\(\pi\)</span> Using Monte Carlo Methods</h1>
+<h2 id="part-1-estimating-pi-using-a-circle">Part 1: Estimating <span class="arithmatex">\(\pi\)</span> Using a Circle</h2>
+<h3 id="1-theoretical-foundation">1. Theoretical Foundation</h3>
+<p>The Monte Carlo method estimates <span class="arithmatex">\(\pi\)</span> by simulating random points in a square that bounds a circle.</p>
+<p>Consider a unit circle (radius = 1) inscribed in a square of side length 2 (from -1 to 1 on both <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> axes).</p>
+<p>The area of the circle is:</p>
+<div class="arithmatex">\[
+\pi r^2 = \pi, \quad \text{since } r = 1
+\]</div>
+<p>The area of the square is:</p>
+<div class="arithmatex">\[
+2 \times 2 = 4
+\]</div>
+<p>If we randomly generate a large number of points uniformly within the square, the fraction of points that fall inside the circle should be approximately equal to the ratio of the areas:</p>
+<div class="arithmatex">\[
+\frac{\text{Points inside the circle}}{\text{Total points}} \approx \frac{\pi}{4}
+\]</div>
+<p>So, we can estimate <span class="arithmatex">\(\pi\)</span> as:</p>
+<div class="arithmatex">\[
+\pi \approx 4 \times \left( \frac{\text{Points inside the circle}}{\text{Total points}} \right)
+\]</div>
+<h3 id="2-simulation">2. Simulation</h3>
+<ul>
+<li>Randomly generate a large number of points <span class="arithmatex">\((x, y)\)</span> within the square.</li>
+<li>Count how many points satisfy <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span>, which means they lie within the unit circle.</li>
+<li>Use the ratio above to estimate <span class="arithmatex">\(\pi\)</span>.</li>
+</ul>
+<h3 id="3-visualization">3. Visualization</h3>
+<ul>
+<li>Plot all points:</li>
+<li>Points inside the circle are marked in one color (e.g., blue).</li>
+<li>Points outside the circle are marked in another color (e.g., red).</li>
+<li>Show the boundary of the unit circle for visual comparison.</li>
+</ul>
+<h3 id="4-analysis">4. Analysis</h3>
+<ul>
+<li>As the number of points increases, the estimate becomes more accurate.</li>
+<li>The convergence follows the <strong>Law of Large Numbers</strong>.</li>
+<li>However, the rate of convergence is slow; to get more decimal places of accuracy, a very large number of points is needed.</li>
+<li>Computationally, this method is simple and parallelizable, but not very efficient for high precision.</li>
+</ul>
+<hr/>
+<h2 id="part-2-estimating-pi-using-buffons-needle">Part 2: Estimating <span class="arithmatex">\(\pi\)</span> Using Buffon’s Needle</h2>
+<h3 id="1-theoretical-foundation_1">1. Theoretical Foundation</h3>
+<p>Buffon’s Needle is a probability problem where a needle of length <span class="arithmatex">\(l\)</span> is dropped onto a floor with parallel lines spaced <span class="arithmatex">\(t\)</span> units apart (usually <span class="arithmatex">\(l \leq t\)</span>).</p>
+<p>The probability <span class="arithmatex">\(P\)</span> that the needle will cross one of the lines is:</p>
+<div class="arithmatex">\[
+P = \frac{2l}{t\pi}
+\]</div>
+<p>Rearranging to solve for <span class="arithmatex">\(\pi\)</span> gives the estimation formula:</p>
+<div class="arithmatex">\[
+\pi \approx \frac{2lN}{tC}
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(N\)</span>: number of needle drops  </li>
+<li><span class="arithmatex">\(C\)</span>: number of times the needle crosses a line</li>
+</ul>
+<h3 id="2-simulation_1">2. Simulation</h3>
+<ul>
+<li>Simulate many random needle drops.</li>
+<li>For each drop, randomly choose:</li>
+<li>The distance from the needle’s center to the nearest line.</li>
+<li>The angle between the needle and the lines.</li>
+<li>Count how often the needle crosses a line.</li>
+<li>Use the formula above to estimate <span class="arithmatex">\(\pi\)</span>.</li>
+</ul>
+<h3 id="3-visualization_1">3. Visualization</h3>
+<ul>
+<li>Draw the parallel lines on the plane.</li>
+<li>Show each needle's position and orientation.</li>
+<li>Mark crossing needles in one color.</li>
+<li>Mark non-crossing needles in another.</li>
+<li>Visual representation helps understand the geometric conditions for a crossing.</li>
+</ul>
+<h3 id="4-analysis_1">4. Analysis</h3>
+<ul>
+<li>Like the circle method, the accuracy improves with more throws.</li>
+<li>However, this method can be less stable if there are few crossings, especially for small numbers of throws.</li>
+<li>The convergence is slower compared to the circle method unless optimized.</li>
+<li>It's a more complex simulation due to angle and geometry, but offers a unique probabilistic view of <span class="arithmatex">\(\pi\)</span>.</li>
+</ul>
+<hr/>
+<h2 id="final-comparison">Final Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Circle Method</th>
+<th>Buffon's Needle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simplicity</td>
+<td>Simple to implement</td>
+<td>More complex geometry</td>
+</tr>
+<tr>
+<td>Visualization</td>
+<td>Clear and intuitive</td>
+<td>More abstract, but interesting</td>
+</tr>
+<tr>
+<td>Convergence Speed</td>
+<td>Moderate</td>
+<td>Slower and less stable</td>
+</tr>
+<tr>
+<td>Accuracy</td>
+<td>Good with enough points</td>
+<td>Sensitive to rare events (crossings)</td>
+</tr>
+<tr>
+<td>Use Cases</td>
+<td>Good general purpose estimator</td>
+<td>Great example of geometry and probability</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="conclusion">Conclusion</h2>
+<p>Both Monte Carlo approaches provide insightful and educational ways to estimate <span class="arithmatex">\(\pi\)</span>:</p>
+<ul>
+<li>The circle-based method is better for straightforward estimation and visualization.</li>
+<li>Buffon’s Needle is conceptually fascinating, linking randomness, geometry, and <span class="arithmatex">\(\pi\)</span> in a clever way.</li>
+</ul>
+<p>Despite their limitations, both methods show how randomness can solve problems in mathematics and science through simulation.</p>
+<h3 id="_1"></h3>
+<p><img alt="alt text" src="../image-12.png"/></p>
+<p><img alt="alt text" src="../image-13.png"/></p>
+<h2 id="colab">colab</h2>
+<p><a href="https://colab.research.google.com/drive/1jQlQatUul_om4qU-6c4-ZIBdhJ4GcYBj?usp=sharing">Motivation</a></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
