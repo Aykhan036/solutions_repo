@@ -172,6 +172,119 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="pendulum-experiment-to-measure-gravitational-acceleration">Pendulum Experiment to Measure Gravitational Acceleration</h1>
+<h2 id="1-experimental-setup">1. Experimental Setup</h2>
+<ul>
+<li><strong>Pendulum length (<span class="arithmatex">\(L\)</span>)</strong>: Measured from suspension point to center of mass of the weight.</li>
+<li><strong>Measuring tool resolution</strong>: 1 mm = 0.001 m</li>
+</ul>
+<p>Uncertainty in <span class="arithmatex">\(L\)</span>:</p>
+<div class="arithmatex">\[
+\Delta L = \frac{0.001}{2} = 0.0005 \text{ m}
+\]</div>
+<p>Measured value:</p>
+<div class="arithmatex">\[
+L = 1.000 \text{ m}, \quad \Delta L = 0.0005 \text{ m}
+\]</div>
+<h2 id="2-timing-data-collection">2. Timing Data Collection</h2>
+<p><strong>Measured time for 10 oscillations (in seconds):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Trial</th>
+<th><span class="arithmatex">\(T_{10}\)</span> (s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>20.10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>20.15</td>
+</tr>
+<tr>
+<td>3</td>
+<td>20.08</td>
+</tr>
+<tr>
+<td>4</td>
+<td>20.12</td>
+</tr>
+<tr>
+<td>5</td>
+<td>20.14</td>
+</tr>
+<tr>
+<td>6</td>
+<td>20.09</td>
+</tr>
+<tr>
+<td>7</td>
+<td>20.11</td>
+</tr>
+<tr>
+<td>8</td>
+<td>20.13</td>
+</tr>
+<tr>
+<td>9</td>
+<td>20.16</td>
+</tr>
+<tr>
+<td>10</td>
+<td>20.10</td>
+</tr>
+</tbody>
+</table>
+<p>Mean time for 10 oscillations:</p>
+<div class="arithmatex">\[
+\bar{T}_{10} = \frac{1}{10} \sum T_{10} = 20.118 \text{ s}
+\]</div>
+<p>Standard deviation:</p>
+<div class="arithmatex">\[
+\sigma_T \approx 0.026 \text{ s}
+\]</div>
+<p>Uncertainty in the mean:</p>
+<div class="arithmatex">\[
+\Delta T_{10} = \frac{\sigma_T}{\sqrt{n}} = \frac{0.026}{\sqrt{10}} \approx 0.008 \text{ s}
+\]</div>
+<h2 id="3-calculations">3. Calculations</h2>
+<h3 id="a-period-of-1-oscillation">(a) Period of 1 oscillation:</h3>
+<div class="arithmatex">\[
+T = \frac{\bar{T}_{10}}{10} = \frac{20.118}{10} = 2.0118 \text{ s}
+\]</div>
+<div class="arithmatex">\[
+\Delta T = \frac{0.008}{10} = 0.0008 \text{ s}
+\]</div>
+<h3 id="b-acceleration-due-to-gravity">(b) Acceleration due to gravity:</h3>
+<div class="arithmatex">\[
+g = \frac{4\pi^2 L}{T^2} = \frac{4\pi^2 \cdot 1.000}{(2.0118)^2} \approx 9.766 \text{ m/s}^2
+\]</div>
+<h3 id="c-uncertainty-in-g">(c) Uncertainty in <span class="arithmatex">\(g\)</span>:</h3>
+<div class="arithmatex">\[
+\Delta g = g \sqrt{\left( \frac{\Delta L}{L} \right)^2 + \left( 2 \cdot \frac{\Delta T}{T} \right)^2}
+\]</div>
+<div class="arithmatex">\[
+\Delta g = 9.766 \cdot \sqrt{\left( \frac{0.0005}{1.000} \right)^2 + \left( 2 \cdot \frac{0.0008}{2.0118} \right)^2}
+\]</div>
+<div class="arithmatex">\[
+\Delta g \approx 9.766 \cdot \sqrt{2.5 \times 10^{-7} + 6.3 \times 10^{-7}} \approx 0.010 \text{ m/s}^2
+\]</div>
+<h2 id="4-final-results-summary">4. Final Results Summary</h2>
+<p>```markdown
+| Quantity                 | Value         |
+|--------------------------|---------------|
+| <span class="arithmatex">\(L\)</span>                      | 1.000 m       |
+| <span class="arithmatex">\(\Delta L\)</span>               | 0.0005 m      |
+| Mean <span class="arithmatex">\(T_{10}\)</span> (<span class="arithmatex">\(\bar{T}_{10}\)</span>) | 20.118 s      |
+| <span class="arithmatex">\(\sigma_T\)</span>               | 0.026 s       |
+| <span class="arithmatex">\(\Delta T_{10}\)</span>          | 0.008 s       |
+| Period <span class="arithmatex">\(T\)</span>               | 2.0118 s      |
+| <span class="arithmatex">\(\Delta T\)</span>               | 0.0008 s      |
+| <span class="arithmatex">\(g\)</span>                      | 9.766 m/s²    |
+| <span class="arithmatex">\(\Delta g\)</span>               | 0.010 m/s²    |</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
