@@ -99,3 +99,16 @@ g = \frac{4\pi^2 L}{T^2} = \frac{4\pi^2 \cdot 1.000}{(2.0118)^2} \approx 9.766 \
 | $\Delta T$               | 0.0008 s      |
 | $g$                      | 9.766 m/s²    |
 | $\Delta g$               | 0.010 m/s²    |
+
+###
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+![alt text](image-3.png)
+
+## colab
+[Motivation](https://colab.research.google.com/drive/1hGDEAhPEXnLqiPyRFvzMDjpaCpa9lVqx?usp=sharing)
